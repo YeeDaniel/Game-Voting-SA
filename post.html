@@ -53,6 +53,16 @@
         .page-link {
             color: gray;
         }
+
+        .btn-hover-effect {
+            transition: transform 0.2s ease-in-out;
+            /* 平滑过渡效果 */
+        }
+
+        .btn-hover-effect:hover {
+            transform: scale(1.1);
+            /* 鼠标悬停时放大1.1倍 */
+        }
     </style>
     <script>
 
@@ -98,20 +108,20 @@
                 <form id="myForm" action="vote.php" method="post" onsubmit="return validateForm(event)">
                     <input type="hidden" id="AuthorId" name="AuthorId" value="">
                     <div class="btn-group">
-                        <button class="btn btn-sm dropdown-toggle shadow border" type="button" id="selectPagedropdown"
+                        <button class="btn btn-sm dropdown-toggle  border" type="button" id="selectPagedropdown"
                             data-bs-toggle="dropdown" aria-expanded="false"
-                            style="background-color: rgb(255, 255, 255); font-size: smaller;">
+                            style="background-color: rgb(255, 255, 255); font-size: small;">
                             請選擇賽事主題
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="selectPagedropdown">
                             <li><a class="dropdown-item" href="#"
-                                    onclick="updateButton('selectPagedropdown', '足球')">足球</a></li>
+                                    onclick="updateButton('selectPagedropdown', '國際足球')">國際足球</a></li>
                             <li><a class="dropdown-item" href="#"
-                                    onclick="updateButton('selectPagedropdown', '棒球')">棒球</a></li>
+                                    onclick="updateButton('selectPagedropdown', 'NBA')">NBA</a></li>
                             <li><a class="dropdown-item" href="#"
-                                    onclick="updateButton('selectPagedropdown', '籃球')">籃球</a></li>
+                                    onclick="updateButton('selectPagedropdown', 'MLB')">MLB</a></li>
                             <li><a class="dropdown-item" href="#"
-                                    onclick="updateButton('selectPagedropdown', '羽球')">羽球</a></li>
+                                    onclick="updateButton('selectPagedropdown', '國際棒球')">國際棒球</a></li>
                         </ul>
                     </div>
                     <input type="hidden" name="selected_board" id="selected_board">
@@ -122,56 +132,16 @@
 
     <div class="container mt-3">
         <div class="hstack gap-3">
-            <form id="myForm" action="vote.php" method="post" onsubmit="return year(event)">
-                <input type="hidden" id="AuthorId1" name="AuthorId1" value="">
-                <div class="btn-group">
-                    <button class="btn btn-sm dropdown-toggle shadow border" type="button" id="selectPagedropdown1"
-                        data-bs-toggle="dropdown" aria-expanded="false"
-                        style="background-color: rgb(255, 255, 255); font-size: smaller;">
-                        年
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="selectPagedropdown1">
-                        <li><a class="dropdown-item" href="#"
-                                onclick="updateButton('selectPagedropdown1', '2024')">2024</a></li>
-                        <li><a class="dropdown-item" href="#"
-                                onclick="updateButton('selectPagedropdown1', '2025')">2025</a></li>
-                        <li><a class="dropdown-item" href="#"
-                                onclick="updateButton('selectPagedropdown1', '2026')">2026</a></li>
-                        <li><a class="dropdown-item" href="#"
-                                onclick="updateButton('selectPagedropdown1', '2027')">2027</a></li>
-                    </ul>
-                </div>
-                <input type="hidden" name="year" id="year">
-            </form>
-            <div class="btn-group">
-                <button class="btn btn-sm dropdown-toggle shadow border" type="button" id="selectPagedropdown2"
-                    data-bs-toggle="dropdown" aria-expanded="false"
-                    style="background-color: rgb(255, 255, 255); font-size: smaller;">
-                    月
-                </button>
-                <ul class="dropdown-menu overflow-auto" id="monthDropdown" aria-labelledby="selectPagedropdown2"
-                    style="max-height: 200px;">
-                    <!-- 动态生成月份选项 -->
-                </ul>
-            </div>
-            <input type="hidden" name="month" id="month">
-            <div class="btn-group">
-                <button class="btn btn-sm dropdown-toggle shadow border" type="button" id="selectPagedropdown3"
-                    data-bs-toggle="dropdown" aria-expanded="false"
-                    style="background-color: rgb(255, 255, 255); font-size: smaller;">
-                    日
-                </button>
-                <ul class="dropdown-menu overflow-auto" id="dayDropdown" aria-labelledby="selectPagedropdown3"
-                    style="max-height: 200px;">
-                    <!-- 动态生成日期选项 -->
-                </ul>
-            </div>
-            <input type="hidden" name="day" id="day">
+            <div class="form-group">
+                <label for="start" class="form-label">請選擇比賽日期與時間:</label>
+                
 
-
+                <input type="datetime-local" id="meeting-time" name="meeting-time"style="font-size:small"class="form-control"
+                
+                max="2030-12-31T00:00" />
+            </div>
         </div>
     </div>
-
     <script>
         // 通用更新按钮内容的函数
         function updateButton(buttonId, text) {
@@ -184,54 +154,31 @@
 
 
 
+        document.addEventListener('DOMContentLoaded', function () {
+            // 获取当前时间
+            const now = new Date();
+            // 格式化为 yyyy-MM-ddTHH:mm
+            const taiwanOffset = 8 * 60; // 台灣时区是 UTC+8
+            const taiwanTime = new Date(now.getTime() + taiwanOffset * 60000);
 
+            const formattedNow = taiwanTime.toISOString().slice(0, 16);
 
-        // 动态生成月份选项
-        document.addEventListener('DOMContentLoaded', () => {
-            const monthDropdown = document.getElementById('monthDropdown');
-            for (let i = 1; i <= 12; i++) {
-                const listItem = document.createElement('li');
-                listItem.innerHTML = `
-                                <a class="dropdown-item" href="#" onclick="updateDropdown('selectPagedropdown2', '${i}')">
-                                    ${i} 
-                                </a>`;
-                monthDropdown.appendChild(listItem);
-            }
+            // 获取日期时间输入框
+            const dateTimeInput = document.getElementById('meeting-time');
+
+            // 设置最小值和默认值为当前时间
+            dateTimeInput.setAttribute('min', formattedNow); // 限制只能选择未来时间
+            dateTimeInput.value = formattedNow; // 预设为当前时间
         });
-        document.addEventListener('DOMContentLoaded', () => {
-            const dayDropdown = document.getElementById('dayDropdown');
-            for (let i = 1; i <= 31; i++) {
-                const listItem = document.createElement('li');
-                listItem.innerHTML = `
-                                <a class="dropdown-item" href="#" onclick="updateDropdown1('selectPagedropdown3', '${i}')">
-                                    ${i} 
-                                </a>`;
-                dayDropdown.appendChild(listItem);
-            }
-        });
-        // 通用更新函数
-        function updateDropdown(buttonId, value) {
-            const button = document.getElementById(buttonId); // 用 buttonId 找到目标按钮
-            if (button) {
-                button.textContent = `${value} 月`; // 更新按钮文本
-            }
-        }
-        function updateDropdown1(dayDropdown, value) {
-            const button = document.getElementById(dayDropdown); // 用 buttonId 找到目标按钮
-            if (button) {
-                button.textContent = `${value} 日`; // 更新按钮文本
-            }
-        }
     </script>
-
     <form action="vote.php" method="post">
         <div class="container h-100">
             <div class="row justify-content-center align-items-end" style="height: 50vh;">
                 <div class="col-auto">
                     <div class="d-flex justify-content-center">
-                        <input type="submit" class="btn shadow border" type="button" onclick="submitForm()"
-                            style="background-color: rgb(127, 212, 70);" value="確認">
-                        <a href="homePageDcard.php" class="btn" type="button"
+                        <input type="submit" class="btn shadow border btn-hover-effect" type="button"
+                            onclick="submitForm()" style="background-color: rgb(127, 212, 70);" value="確認">
+                        <a href="homePageDcard.php" class="btn btn-hover-effect" type="button"
                             style="background-color: transparent; color:grey">
                             <span style="font-size: smaller;"> 取 消</span>
                         </a>
@@ -240,7 +187,7 @@
                 </div>
             </div>
         </div>
-
+    </form>
 </body>
 
 </html>
