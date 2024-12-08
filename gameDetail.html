@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="gameDetail.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   </head>
-  <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary " >
+  <body style="background-color: #FAF0D8;">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary"style="background-color: #FAF0D8;" >
       <div class="container-fluid">
         <a class="navbar-brand" href="#">首頁</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,25 +75,25 @@
                 </h5>
                 <p class="card-text">
                   <div class="btn-group d-flex justify-content-between w-100" role="group">
-                    <button type="button" class="btn btn-outline-primary"  >Under
-                      <i class="bi bi-caret-down-fill"></i>
+                    <button type="button" class="btn btn-outline-primary" id="underButton" onclick="handleVote('under')">
+                      Under <i class="bi bi-caret-down-fill"></i> <span class="vote-count" id="underVote">0</span>
                     </button>
-                    <button type="button" class="btn btn-outline-primary"  >Over
-                      <i class="bi bi-caret-up-fill"></i>
-                    </button>
+                    <button type="button" class="btn btn-outline-primary" id="overButton" onclick="handleVote('over')">
+                      Over <i class="bi bi-caret-up-fill"></i> <span class="vote-count" id="overVote">0</span>
+                    </button>         
                   </div>
                   <p>Closes in 4h</p>
                   <div class="row my-1">
                     <div class="col ">
-                      <button class="btn d-flex" id="overUnderPollHeart" style="border: none;">
-                        <i onclick="toggleHeart(this)" class="bi bi-heart"></i>
-                        <p class=" mx-1">23</p>
+                      <button class="btn d-flex" id="heartButton1" style="border: none;" onclick="toggleHeart(this, 'count1')">
+                        <i class="bi bi-heart"></i>
+                        <p class="mx-1" id="count1">23</p>
                       </button>
                     </div>
                     <div class="col d-flex justify-content-end">
                       <button class="btn d-flex" data-bs-toggle="modal" data-bs-target="#overUnderPollModal" style="border: none;">
                         <i class="bi bi-chat"></i>
-                        <p class=" mx-1">23</p>
+                        <p class=" mx-1">7</p>
                       </button>
                     </div>
                   </div>
@@ -111,21 +111,25 @@
                 </h5>
                 <p class="card-text">
                   <div class="btn-group d-flex justify-content-between w-100" role="group">
-                    <button type="button" class="btn btn-outline-primary">Min</button>
-                    <button type="button" class="btn btn-outline-primary">Bos</button>
+                    <button type="button" class="btn btn-outline-primary" id="homeButton" onclick="handleSpreadVote('home')">
+                      Min<span class="vote-count mx-1" id="homeVote">0</span>
+                    </button>
+                    <button type="button" class="btn btn-outline-primary" id="awayButton" onclick="handleSpreadVote('away')">
+                      Bos<span class="vote-count mx-1" id="awayVote">0</span>
+                    </button>    
                   </div>
                   <p>Closes in 4h</p>
                   <div class="row my-1">
                     <div class="col ">
-                      <button class="btn d-flex " style="border: none;">
+                      <button class="btn d-flex" id="heartButton2" style="border: none;" onclick="toggleHeart(this, 'count2')">
                         <i class="bi bi-heart"></i>
-                        <p class=" mx-1">23</p>
+                        <p class="mx-1" id="count2">15</p>
                       </button>
                     </div>
                     <div class="col d-flex justify-content-end">
                       <button class="btn d-flex"data-bs-toggle="modal" data-bs-target="#spreadPollModal" style="border: none;">
                         <i class="bi bi-chat"></i>
-                        <p class=" mx-1">23</p>
+                        <p class=" mx-1">7</p>
                       </button>
                     </div>
                   </div>
@@ -152,8 +156,7 @@
                       <div class="col-md-12 col-lg-10 col-xl-8">
                         <div class="card">
                           <div class="card-body p-4">
-                            <h4 class="text-center mb-4 pb-2">Comment section</h4>
-      
+                            <h4 class="text-center mb-4 pb-2">Game comments</h4>
                             <div class="row">
                               <div class="col">
                                 <div class="d-flex flex-start">
@@ -175,7 +178,6 @@
                                         the readable content of a page.
                                       </p>
                                     </div>
-                
                                     <div class="d-flex flex-start mt-4">
                                       <a class="me-3" href="#">
                                         <img class="rounded-circle shadow-1-strong"
@@ -196,7 +198,6 @@
                                         </div>
                                       </div>
                                     </div>
-                
                                     <div class="d-flex flex-start mt-4">
                                       <a class="me-3" href="#">
                                         <img class="rounded-circle shadow-1-strong"
@@ -218,8 +219,7 @@
                                       </div>
                                     </div>
                                   </div>
-                                </div>
-                
+                                </div>               
                                 <div class="d-flex flex-start mt-4">
                                   <img class="rounded-circle shadow-1-strong me-3"
                                     src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(12).webp" alt="avatar" width="65"
@@ -240,7 +240,6 @@
                                         1.10.33.
                                       </p>
                                     </div>
-                
                                     <div class="d-flex flex-start mt-4">
                                       <a class="me-3" href="#">
                                         <img class="rounded-circle shadow-1-strong"
@@ -262,7 +261,6 @@
                                         </div>
                                       </div>
                                     </div>
-                
                                     <div class="d-flex flex-start mt-4">
                                       <a class="me-3" href="#">
                                         <img class="rounded-circle shadow-1-strong"
@@ -283,7 +281,6 @@
                                         </div>
                                       </div>
                                     </div>
-                
                                     <div class="d-flex flex-start mt-4">
                                       <a class="me-3" href="#">
                                         <img class="rounded-circle shadow-1-strong"
@@ -339,7 +336,7 @@
                       <div class="col-md-12 col-lg-10 col-xl-8">
                         <div class="card">
                           <div class="card-body p-4">
-                            <h4 class="text-center mb-4 pb-2">Comment section</h4>
+                            <h4 class="text-center mb-4 pb-2">Over/Under poll comments</h4>
       
                             <div class="row">
                               <div class="col">
@@ -526,7 +523,7 @@
                       <div class="col-md-12 col-lg-10 col-xl-8">
                         <div class="card">
                           <div class="card-body p-4">
-                            <h4 class="text-center mb-4 pb-2">Comment section</h4>
+                            <h4 class="text-center mb-4 pb-2">Spread comments</h4>
       
                             <div class="row">
                               <div class="col">
@@ -700,8 +697,101 @@
       </div>
     </section>
     <script>
-        function toggleHeart(x) {
-          x.classList.toggle("bi-heart-fill");
+      function toggleHeart(buttonElement, countId) {
+        const heartIcon = buttonElement.querySelector('i');
+        const heartCountElement = document.getElementById(countId);
+        let count = parseInt(heartCountElement.textContent);
+        if (heartIcon.classList.contains('bi-heart')) {
+          heartIcon.classList.remove('bi-heart');
+          heartIcon.classList.add('bi-heart-fill');
+          count += 1; 
+        } else {
+          heartIcon.classList.remove('bi-heart-fill');
+          heartIcon.classList.add('bi-heart');
+          count -= 1;
+        }
+        heartCountElement.textContent = count;
+      }
+    </script>
+    <script>
+      let overUnderCurrentVote = null; 
+      function handleVote(option) {
+        const underButton = document.getElementById('underButton');
+        const overButton = document.getElementById('overButton');
+        const underVote = document.getElementById('underVote');
+        const overVote = document.getElementById('overVote');
+    
+        if (overUnderCurrentVote === option) {
+          overUnderCurrentVote = null;
+    
+          if (option === 'under') {
+            underButton.classList.remove('btn-primary');
+            underButton.classList.add('btn-outline-primary');
+            underVote.textContent = '0';
+          } else {
+            overButton.classList.remove('btn-primary');
+            overButton.classList.add('btn-outline-primary');
+            overVote.textContent = '0';
+          }
+    
+          underButton.disabled = false;
+          overButton.disabled = false;
+        } else {
+          overUnderCurrentVote = option;
+    
+          if (option === 'under') {
+            underButton.classList.remove('btn-outline-primary');
+            underButton.classList.add('btn-primary');
+            underVote.textContent = '1';
+            overButton.disabled = true;
+          } else {
+            overButton.classList.remove('btn-outline-primary');
+            overButton.classList.add('btn-primary');
+            overVote.textContent = '1';
+    
+            underButton.disabled = true;
+          }
+        }
+      }
+    </script>
+    <script>
+      let spreadCurrentVote = null; 
+    
+      function handleSpreadVote(option) {
+        const homeButton = document.getElementById('homeButton');
+        const awayButton = document.getElementById('awayButton');
+        const homeVote = document.getElementById('homeVote');
+        const awayVote = document.getElementById('awayVote');
+    
+        if (spreadCurrentVote === option) {
+          spreadCurrentVote = null;
+          if (option === 'home') {
+            homeButton.classList.remove('btn-primary');
+            homeButton.classList.add('btn-outline-primary');
+            homeVote.textContent = '0';
+          } else {
+            awayButton.classList.remove('btn-primary');
+            awayButton.classList.add('btn-outline-primary');
+            awayVote.textContent = '0';
+          }
+          homeButton.disabled = false;
+          awayButton.disabled = false;
+        } else {
+          spreadCurrentVote = option;
+    
+          if (option === 'home') {
+            homeButton.classList.remove('btn-outline-primary');
+            homeButton.classList.add('btn-primary');
+            homeVote.textContent = '1';
+            awayButton.disabled = true;
+          } else {
+            awayButton.classList.remove('btn-outline-primary');
+            awayButton.classList.add('btn-primary');
+            awayVote.textContent = '1';
+  
+            homeButton.disabled = true;
+          }
+        }
       }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
