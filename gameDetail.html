@@ -3,47 +3,1101 @@
   <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Profile</title>
+    <title>Game Detail</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="gameDetail.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg border border-bottom" style="background-color: #FAF0D8;">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse mx-3" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-              <a class="nav-link" aria-current="page" href="#">首頁</a>
-              <a class="nav-link mx-1" href="#">熱門賽事</a>
-              <a class="nav-link mx-1" href="#">國際足球</a>
-              <a class="nav-link mx-1" href="#">NBA</a>
-              <a class="nav-link mx-1" href="#">MLB</a>
-              <a class="nav-link mx-1" href="#">國際棒球</a>
-              <a class="nav-link position-absolute end-0 mx-1 active" href="profile.html">個人</a>
+    <ul class="nav nav-underline justify-content-around" style="background-color: #FAEFD6;">
+      <li class="nav-item">
+          <a class="nav-link text-dark  " href="post.html">首頁</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link text-dark " href="test2.html">熱門賽事</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link text-dark" href="">國際足球</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link text-dark" href="">NBA</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link text-dark" href="">MLB</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link text-dark" href="">國際棒球</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link text-dark" href="">個人</a>
+      </li>
+    </ul>
+    <div id="match" class="container-fluid px-5 py-3" style="background-color: #FAF0D8;">
+      <div class="container">
+        <div class="row align-items-center d-flex">
+          <!-- Away Team -->
+          <div class="col-4 d-flex align-items-center justify-content-center">
+            <img id="awayLogo" src="" alt="Away Team Logo" style="width: 100px;">
+            <div class="ms-3 text-center">
+              <p id="awayRecord" class="mb-1 fw-bolder">Away Record</p>
+              <p id="awayTeamName" class="mb-0 fw-bolder">Away Team Name</p>
             </div>
           </div>
-      </nav>
-      <div class="container-fluid px-5" style="background-color: #FAF0D8;">
-        <div class="row"></div>
-        <div class="row">
-            <div class="col text-center">
-                <img src="assets\poll.png" alt="Avatar" class="img-fluid my-5 mx-2" style="width: 40px;">Over/Under
-                <p>Total points 224.5</p>
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-outline-primary">Under</button>
-                    <button type="button" class="btn btn-outline-primary">Over</button>
-                </div>
+          <!-- Match Info -->
+          <div class="col-4 text-center">
+            <p id="matchTime" class="fw-bolder">Match Time</p>
+            <p id="statusText" class="fw-bolder">Match Status</p>
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#gameCommentModal" style="border: none;">
+              <i class="bi bi-chat"></i>
+              <p id="commentCount" class="mx-1 fw-bolder">0</p>
+            </button>
+          </div>
+          <!-- Home Team -->
+          <div class="col-4 d-flex align-items-center justify-content-center">
+            <div class="mx-3 text-center">
+              <p id="homeRecord" class="mb-1 fw-bolder">Home Record</p>
+              <p id="homeTeamName" class="mb-0 fw-bolder">Home Team Name</p>
             </div>
-            <div class="col text-center">
-                <img src="assets\poll.png" alt="Avatar" class="img-fluid my-5 mx-2" style="width: 40px;">Spread
-            </div>
+            <img id="homeLogo" src="" alt="Home Team Logo" style="width: 100px;">
+          </div>
         </div>
       </div>
+    </div>
+    <div class="row mx-2 " style="background-color: #FAF0D8;">
+      <div class="col-sm-6 mb-3 mb-sm-0 d-flex">
+        <div class="card flex-fill" style="border-radius: 20px; background-color: #fae3b8;">
+          <div class="card-body">
+            <h5 class="card-title">
+              <img src="assets/poll.png" alt="Avatar" class="img-fluid my-5 mx-2" style="width: 40px;"> Over/Under
+              <span class="d-flex align-items-center">
+                <p id="totalPoints" class="fw-bolder mb-0">Total points 224.5</p>
+                <button class="btn btn-primary ms-auto" id="totalPollsConfirm" onclick="submitTotalPointsVote()">Confirm Vote</button>
+              </span>
+              
+            </h5>
+            <p class="card-text fw-bolder">
+              <div class="btn-group d-flex justify-content-between w-100" role="group">
+                <button type="button" class="btn btn-outline-primary text-center" id="underButton" onclick="handleTotalPointsVote('under')">
+                  Under<i class="bi bi-caret-down-fill"></i> <span class="vote-count" id="underVote">0</span>
+                </button>
+                <button type="button" class="btn btn-outline-primary text-center" id="overButton" onclick="handleTotalPointsVote('over')">
+                  Over <i class="bi bi-caret-up-fill"></i> <span class="vote-count" id="overVote">0</span>
+                </button>         
+              </div>
+              <p class="d-flex">Closes in
+                <span class="mx-1" id="closeTime">4h</span>
+              </p>
+              <div class="row my-1">
+                <div class="col">
+                  <button class="btn d-flex" id="heartButton1" style="border: none;" onclick="toggleHeart(this, 'count1')">
+                    <i class="bi bi-heart"></i>
+                    <p class="mx-1" id="count1">23</p>
+                  </button>
+                </div>
+                <div class="col d-flex justify-content-end">
+                  <button class="btn d-flex" data-bs-toggle="modal" data-bs-target="#TotalPointsPollModal" style="border: none;">
+                    <i class="bi bi-chat"></i>
+                    <p class=" mx-1">7</p>
+                  </button>
+                </div>
+              </div>
+            </p>
+          </div>
+        </div>
+      </div>      
+      <div class="col-sm-6 d-flex ">
+        <div class="card flex-fill" style="border-radius: 20px; background-color: #fae3b8;">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <img src="assets/poll.png" alt="Avatar" class="img-fluid my-5 mx-2" style="width: 40px;">Spread
+                    <p class="fw-bolder">Pick a team to cover the spread</p>
+                    <span class="d-flex align-items-center">
+                      <p class="fw-bolder"><span id="spreadText">Bos by 8.0</span></p>
+                      <button class="btn btn-primary ms-auto" id="spreadConfirm" onclick="submitSpreadVote()">Confirm Vote</button>
+                    </span>
+                </h5>
+                <p class="card-text fw-bolder">
+                    <div class="btn-group d-flex justify-content-between w-100" role="group">
+                        <button type="button" class="btn btn-outline-primary" id="awayButton" onclick="handleSpreadVote('away')">
+                            Away <span class="vote-count mx-1" id="awayVote">0</span>
+                        </button>    
+                        <button type="button" class="btn btn-outline-primary" id="homeButton" onclick="handleSpreadVote('home')">
+                          Home <span class="vote-count mx-1" id="homeVote">0</span>
+                      </button>
+                    </div>
+                    <p>Closes in <span id="spreadCloses">4h</span></p>
+                    <div class="row my-1">
+                      <div class="col ">
+                        <button class="btn d-flex" id="heartButton1" style="border: none;" onclick="toggleHeart(this, 'count1')">
+                          <i class="bi bi-heart"></i>
+                          <p class="mx-1" id="count1">23</p>
+                        </button>
+                      </div>
+                      <div class="col d-flex justify-content-end">
+                        <button class="btn d-flex" data-bs-toggle="modal" data-bs-target="#TotalPointsPollModal" style="border: none;">
+                          <i class="bi bi-chat"></i>
+                          <p class=" mx-1">7</p>
+                        </button>
+                      </div>
+                    </div>
+                </p>
+            </div>
+        </div>
+    </div>
+    </div>
+    <section>
+      <!-- Scrollable modal -->
+      <div class="modal fade" id="gameCommentModal" tabindex="-1" aria-labelledby="gameCommentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="gameCommentModal">Comments</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <section id="gameComments">
+                <section class="gradient-custom">
+                  <div class="container">
+                    <div class="row d-flex justify-content-center">
+                      <div class="col-md-12 col-lg-10 col-xl-8">
+                        <div class="card">
+                          <div class="card-body p-4">
+                            <h4 class="text-center mb-4 pb-2">Game comments</h4>
+                            <div class="row">
+                              <div class="col">
+                                <div class="d-flex flex-start">
+                                  <img class="rounded-circle shadow-1-strong me-3"
+                                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp" alt="avatar" width="65"
+                                    height="65" />
+                                  <div class="flex-grow-1 flex-shrink-1">
+                                    <div>
+                                      <div class="d-flex justify-content-between align-items-center">
+                                        <p class="mb-1">
+                                          Maria Smantha <span class="small">- 2 hours ago</span>
+                                        </p>
+                                        <a href="#!"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
+                                          <path d="M5.921 11.9 1.353 8.62a.72.72 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z"/>
+                                        </svg>reply</a>
+                                      </div>
+                                      <p class="small mb-0">
+                                        It is a long established fact that a reader will be distracted by
+                                        the readable content of a page.
+                                      </p>
+                                    </div>
+                                    <div class="d-flex flex-start mt-4">
+                                      <a class="me-3" href="#">
+                                        <img class="rounded-circle shadow-1-strong"
+                                          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(11).webp" alt="avatar"
+                                          width="65" height="65" />
+                                      </a>
+                                      <div class="flex-grow-1 flex-shrink-1">
+                                        <div>
+                                          <div class="d-flex justify-content-between align-items-center">
+                                            <p class="mb-1">
+                                              Simona Disa <span class="small">- 3 hours ago</span>
+                                            </p>
+                                          </div>
+                                          <p class="small mb-0">
+                                            letters, as opposed to using 'Content here, content here',
+                                            making it look like readable English.
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="d-flex flex-start mt-4">
+                                      <a class="me-3" href="#">
+                                        <img class="rounded-circle shadow-1-strong"
+                                          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(32).webp" alt="avatar"
+                                          width="65" height="65" />
+                                      </a>
+                                      <div class="flex-grow-1 flex-shrink-1">
+                                        <div>
+                                          <div class="d-flex justify-content-between align-items-center">
+                                            <p class="mb-1">
+                                              John Smith <span class="small">- 4 hours ago</span>
+                                            </p>
+                                          </div>
+                                          <p class="small mb-0">
+                                            the majority have suffered alteration in some form, by
+                                            injected humour, or randomised words.
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>               
+                                <div class="d-flex flex-start mt-4">
+                                  <img class="rounded-circle shadow-1-strong me-3"
+                                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(12).webp" alt="avatar" width="65"
+                                    height="65" />
+                                  <div class="flex-grow-1 flex-shrink-1">
+                                    <div>
+                                      <div class="d-flex justify-content-between align-items-center">
+                                        <p class="mb-1">
+                                          Natalie Smith <span class="small">- 2 hours ago</span>
+                                        </p>
+                                        <a href="#!"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
+                                          <path d="M5.921 11.9 1.353 8.62a.72.72 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z"/>
+                                        </svg>reply</a>
+                                      </div>
+                                      <p class="small mb-0">
+                                        The standard chunk of Lorem Ipsum used since the 1500s is
+                                        reproduced below for those interested. Sections 1.10.32 and
+                                        1.10.33.
+                                      </p>
+                                    </div>
+                                    <div class="d-flex flex-start mt-4">
+                                      <a class="me-3" href="#">
+                                        <img class="rounded-circle shadow-1-strong"
+                                          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(31).webp" alt="avatar"
+                                          width="65" height="65" />
+                                      </a>
+                                      <div class="flex-grow-1 flex-shrink-1">
+                                        <div>
+                                          <div class="d-flex justify-content-between align-items-center">
+                                            <p class="mb-1">
+                                              Lisa Cudrow <span class="small">- 4 hours ago</span>
+                                            </p>
+                                          </div>
+                                          <p class="small mb-0">
+                                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
+                                            scelerisque ante sollicitudin commodo. Cras purus odio,
+                                            vestibulum in vulputate at, tempus viverra turpis.
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="d-flex flex-start mt-4">
+                                      <a class="me-3" href="#">
+                                        <img class="rounded-circle shadow-1-strong"
+                                          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(29).webp" alt="avatar"
+                                          width="65" height="65" />
+                                      </a>
+                                      <div class="flex-grow-1 flex-shrink-1">
+                                        <div>
+                                          <div class="d-flex justify-content-between align-items-center">
+                                            <p class="mb-1">
+                                              Maggie McLoan <span class="small">- 5 hours ago</span>
+                                            </p>
+                                          </div>
+                                          <p class="small mb-0">
+                                            a Latin professor at Hampden-Sydney College in Virginia,
+                                            looked up one of the more obscure Latin words, consectetur
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="d-flex flex-start mt-4">
+                                      <a class="me-3" href="#">
+                                        <img class="rounded-circle shadow-1-strong"
+                                          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(32).webp" alt="avatar"
+                                          width="65" height="65" />
+                                      </a>
+                                      <div class="flex-grow-1 flex-shrink-1">
+                                        <div>
+                                          <div class="d-flex justify-content-between align-items-center">
+                                            <p class="mb-1">
+                                              John Smith <span class="small">- 6 hours ago</span>
+                                            </p>
+                                          </div>
+                                          <p class="small mb-0">
+                                            Autem, totam debitis suscipit saepe sapiente magnam officiis
+                                            quaerat necessitatibus odio assumenda, perferendis quae iusto
+                                            labore laboriosam minima numquam impedit quam dolorem!
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </section>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Understood</button>
+            </div>
+          </div>
+        </div>
       </div>
+      <div class="modal fade" id="TotalPointsPollModal" tabindex="-1" aria-labelledby="TotalPointsPollModalModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="TotalPointsPollModal">Comments</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <section id="TotalPointsPollComments">
+                <section class="gradient-custom">
+                  <div class="container">
+                    <div class="row d-flex justify-content-center">
+                      <div class="col-md-12 col-lg-10 col-xl-8">
+                        <div class="card">
+                          <div class="card-body p-4">
+                            <h4 class="text-center mb-4 pb-2">Over/Under poll comments</h4>
+      
+                            <div class="row">
+                              <div class="col">
+                                <div class="d-flex flex-start">
+                                  <img class="rounded-circle shadow-1-strong me-3"
+                                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp" alt="avatar" width="65"
+                                    height="65" />
+                                  <div class="flex-grow-1 flex-shrink-1">
+                                    <div>
+                                      <div class="d-flex justify-content-between align-items-center">
+                                        <p class="mb-1">
+                                          Maria Smantha <span class="small">- 2 hours ago</span>
+                                        </p>
+                                        <a href="#!"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
+                                          <path d="M5.921 11.9 1.353 8.62a.72.72 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z"/>
+                                        </svg>reply</a>
+                                      </div>
+                                      <p class="small mb-0">
+                                        It is a long established fact that a reader will be distracted by
+                                        the readable content of a page.
+                                      </p>
+                                    </div>
+                
+                                    <div class="d-flex flex-start mt-4">
+                                      <a class="me-3" href="#">
+                                        <img class="rounded-circle shadow-1-strong"
+                                          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(11).webp" alt="avatar"
+                                          width="65" height="65" />
+                                      </a>
+                                      <div class="flex-grow-1 flex-shrink-1">
+                                        <div>
+                                          <div class="d-flex justify-content-between align-items-center">
+                                            <p class="mb-1">
+                                              Simona Disa <span class="small">- 3 hours ago</span>
+                                            </p>
+                                          </div>
+                                          <p class="small mb-0">
+                                            letters, as opposed to using 'Content here, content here',
+                                            making it look like readable English.
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                
+                                    <div class="d-flex flex-start mt-4">
+                                      <a class="me-3" href="#">
+                                        <img class="rounded-circle shadow-1-strong"
+                                          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(32).webp" alt="avatar"
+                                          width="65" height="65" />
+                                      </a>
+                                      <div class="flex-grow-1 flex-shrink-1">
+                                        <div>
+                                          <div class="d-flex justify-content-between align-items-center">
+                                            <p class="mb-1">
+                                              John Smith <span class="small">- 4 hours ago</span>
+                                            </p>
+                                          </div>
+                                          <p class="small mb-0">
+                                            the majority have suffered alteration in some form, by
+                                            injected humour, or randomised words.
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                
+                                <div class="d-flex flex-start mt-4">
+                                  <img class="rounded-circle shadow-1-strong me-3"
+                                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(12).webp" alt="avatar" width="65"
+                                    height="65" />
+                                  <div class="flex-grow-1 flex-shrink-1">
+                                    <div>
+                                      <div class="d-flex justify-content-between align-items-center">
+                                        <p class="mb-1">
+                                          Natalie Smith <span class="small">- 2 hours ago</span>
+                                        </p>
+                                        <a href="#!"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
+                                          <path d="M5.921 11.9 1.353 8.62a.72.72 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z"/>
+                                        </svg>reply</a>
+                                      </div>
+                                      <p class="small mb-0">
+                                        The standard chunk of Lorem Ipsum used since the 1500s is
+                                        reproduced below for those interested. Sections 1.10.32 and
+                                        1.10.33.
+                                      </p>
+                                    </div>
+                
+                                    <div class="d-flex flex-start mt-4">
+                                      <a class="me-3" href="#">
+                                        <img class="rounded-circle shadow-1-strong"
+                                          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(31).webp" alt="avatar"
+                                          width="65" height="65" />
+                                      </a>
+                                      <div class="flex-grow-1 flex-shrink-1">
+                                        <div>
+                                          <div class="d-flex justify-content-between align-items-center">
+                                            <p class="mb-1">
+                                              Lisa Cudrow <span class="small">- 4 hours ago</span>
+                                            </p>
+                                          </div>
+                                          <p class="small mb-0">
+                                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
+                                            scelerisque ante sollicitudin commodo. Cras purus odio,
+                                            vestibulum in vulputate at, tempus viverra turpis.
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                
+                                    <div class="d-flex flex-start mt-4">
+                                      <a class="me-3" href="#">
+                                        <img class="rounded-circle shadow-1-strong"
+                                          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(29).webp" alt="avatar"
+                                          width="65" height="65" />
+                                      </a>
+                                      <div class="flex-grow-1 flex-shrink-1">
+                                        <div>
+                                          <div class="d-flex justify-content-between align-items-center">
+                                            <p class="mb-1">
+                                              Maggie McLoan <span class="small">- 5 hours ago</span>
+                                            </p>
+                                          </div>
+                                          <p class="small mb-0">
+                                            a Latin professor at Hampden-Sydney College in Virginia,
+                                            looked up one of the more obscure Latin words, consectetur
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                
+                                    <div class="d-flex flex-start mt-4">
+                                      <a class="me-3" href="#">
+                                        <img class="rounded-circle shadow-1-strong"
+                                          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(32).webp" alt="avatar"
+                                          width="65" height="65" />
+                                      </a>
+                                      <div class="flex-grow-1 flex-shrink-1">
+                                        <div>
+                                          <div class="d-flex justify-content-between align-items-center">
+                                            <p class="mb-1">
+                                              John Smith <span class="small">- 6 hours ago</span>
+                                            </p>
+                                          </div>
+                                          <p class="small mb-0">
+                                            Autem, totam debitis suscipit saepe sapiente magnam officiis
+                                            quaerat necessitatibus odio assumenda, perferendis quae iusto
+                                            labore laboriosam minima numquam impedit quam dolorem!
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </section>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Understood</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="spreadPollModal" tabindex="-1" aria-labelledby="spreadPollModalModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="spreadPollModal">Comments</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <section id="spreadPollComments">
+                <section class="gradient-custom">
+                  <div class="container">
+                    <div class="row d-flex justify-content-center">
+                      <div class="col-md-12 col-lg-10 col-xl-8">
+                        <div class="card">
+                          <div class="card-body p-4">
+                            <h4 class="text-center mb-4 pb-2">Spread comments</h4>
+      
+                            <div class="row">
+                              <div class="col">
+                                <div class="d-flex flex-start">
+                                  <img class="rounded-circle shadow-1-strong me-3"
+                                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp" alt="avatar" width="65"
+                                    height="65" />
+                                  <div class="flex-grow-1 flex-shrink-1">
+                                    <div>
+                                      <div class="d-flex justify-content-between align-items-center">
+                                        <p class="mb-1">
+                                          Maria Smantha <span class="small">- 2 hours ago</span>
+                                        </p>
+                                        <a href="#!"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
+                                          <path d="M5.921 11.9 1.353 8.62a.72.72 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z"/>
+                                        </svg>reply</a>
+                                      </div>
+                                      <p class="small mb-0">
+                                        It is a long established fact that a reader will be distracted by
+                                        the readable content of a page.
+                                      </p>
+                                    </div>
+                
+                                    <div class="d-flex flex-start mt-4">
+                                      <a class="me-3" href="#">
+                                        <img class="rounded-circle shadow-1-strong"
+                                          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(11).webp" alt="avatar"
+                                          width="65" height="65" />
+                                      </a>
+                                      <div class="flex-grow-1 flex-shrink-1">
+                                        <div>
+                                          <div class="d-flex justify-content-between align-items-center">
+                                            <p class="mb-1">
+                                              Simona Disa <span class="small">- 3 hours ago</span>
+                                            </p>
+                                          </div>
+                                          <p class="small mb-0">
+                                            letters, as opposed to using 'Content here, content here',
+                                            making it look like readable English.
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                
+                                    <div class="d-flex flex-start mt-4">
+                                      <a class="me-3" href="#">
+                                        <img class="rounded-circle shadow-1-strong"
+                                          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(32).webp" alt="avatar"
+                                          width="65" height="65" />
+                                      </a>
+                                      <div class="flex-grow-1 flex-shrink-1">
+                                        <div>
+                                          <div class="d-flex justify-content-between align-items-center">
+                                            <p class="mb-1">
+                                              John Smith <span class="small">- 4 hours ago</span>
+                                            </p>
+                                          </div>
+                                          <p class="small mb-0">
+                                            the majority have suffered alteration in some form, by
+                                            injected humour, or randomised words.
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                
+                                <div class="d-flex flex-start mt-4">
+                                  <img class="rounded-circle shadow-1-strong me-3"
+                                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(12).webp" alt="avatar" width="65"
+                                    height="65" />
+                                  <div class="flex-grow-1 flex-shrink-1">
+                                    <div>
+                                      <div class="d-flex justify-content-between align-items-center">
+                                        <p class="mb-1">
+                                          Natalie Smith <span class="small">- 2 hours ago</span>
+                                        </p>
+                                        <a href="#!"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
+                                          <path d="M5.921 11.9 1.353 8.62a.72.72 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z"/>
+                                        </svg>reply</a>
+                                      </div>
+                                      <p class="small mb-0">
+                                        The standard chunk of Lorem Ipsum used since the 1500s is
+                                        reproduced below for those interested. Sections 1.10.32 and
+                                        1.10.33.
+                                      </p>
+                                    </div>
+                
+                                    <div class="d-flex flex-start mt-4">
+                                      <a class="me-3" href="#">
+                                        <img class="rounded-circle shadow-1-strong"
+                                          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(31).webp" alt="avatar"
+                                          width="65" height="65" />
+                                      </a>
+                                      <div class="flex-grow-1 flex-shrink-1">
+                                        <div>
+                                          <div class="d-flex justify-content-between align-items-center">
+                                            <p class="mb-1">
+                                              Lisa Cudrow <span class="small">- 4 hours ago</span>
+                                            </p>
+                                          </div>
+                                          <p class="small mb-0">
+                                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
+                                            scelerisque ante sollicitudin commodo. Cras purus odio,
+                                            vestibulum in vulputate at, tempus viverra turpis.
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                
+                                    <div class="d-flex flex-start mt-4">
+                                      <a class="me-3" href="#">
+                                        <img class="rounded-circle shadow-1-strong"
+                                          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(29).webp" alt="avatar"
+                                          width="65" height="65" />
+                                      </a>
+                                      <div class="flex-grow-1 flex-shrink-1">
+                                        <div>
+                                          <div class="d-flex justify-content-between align-items-center">
+                                            <p class="mb-1">
+                                              Maggie McLoan <span class="small">- 5 hours ago</span>
+                                            </p>
+                                          </div>
+                                          <p class="small mb-0">
+                                            a Latin professor at Hampden-Sydney College in Virginia,
+                                            looked up one of the more obscure Latin words, consectetur
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                
+                                    <div class="d-flex flex-start mt-4">
+                                      <a class="me-3" href="#">
+                                        <img class="rounded-circle shadow-1-strong"
+                                          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(32).webp" alt="avatar"
+                                          width="65" height="65" />
+                                      </a>
+                                      <div class="flex-grow-1 flex-shrink-1">
+                                        <div>
+                                          <div class="d-flex justify-content-between align-items-center">
+                                            <p class="mb-1">
+                                              John Smith <span class="small">- 6 hours ago</span>
+                                            </p>
+                                          </div>
+                                          <p class="small mb-0">
+                                            Autem, totam debitis suscipit saepe sapiente magnam officiis
+                                            quaerat necessitatibus odio assumenda, perferendis quae iusto
+                                            labore laboriosam minima numquam impedit quam dolorem!
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </section>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Understood</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      function getQueryParameter(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+      }
+      const AppData = {}
+      matchId = getQueryParameter('matchId');
+      AppData.matchId = parseInt(matchId, 10);
+    </script>
+    <script>
+      async function spreadCheckUserVote(voterId) {
+      const apiUrl = `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/spreadpolls`;
+
+      try {
+          console.log("Fetching from API:", apiUrl);
+
+          const response = await fetch(apiUrl); // Default is GET
+          if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const data = await response.json();
+          console.log("API Response Data:", data);
+
+          // Find the match data for the current matchId
+          const matchData = data.find(match => match.matchId === AppData.matchId);
+          if (!matchData) {
+              console.error(`No data found for matchId ${AppData.matchId}`);
+              return false;
+          }
+
+          console.log("Match Data:", matchData);
+
+          // Check if voterIds exists and is an array
+          if (matchData.voterIds && Array.isArray(matchData.voterIds)) {
+              const hasVoted = matchData.voterIds.includes(voterId);
+              console.log(`User with voterId ${voterId} has${hasVoted ? "" : " not"} voted spread.`);
+              
+              if (hasVoted) {
+                  // Disable buttons if the user has voted
+                  document.getElementById('spreadConfirm').disabled = true;
+                  document.getElementById('homeButton').disabled = true;
+                  document.getElementById('awayButton').disabled = true;
+              }
+              return hasVoted;
+          } else {
+              console.error("voterIds is undefined or not an array in the match data.");
+              return false;
+          }
+      } catch (error) {
+          console.error("Error checking user vote:", error.message, error);
+          return false;
+      }
+    }
+
+    // Test the function with voterId 3
+    spreadCheckUserVote(3);
+
+
+    </script>
+    <script>
+      async function totalPollsCheckUserVote(voterId) {
+      const apiUrl = `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/totalpolls`;
+
+      try {
+          console.log("Fetching from API:", apiUrl);
+
+          const response = await fetch(apiUrl); // Default is GET
+          if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const data = await response.json();
+          console.log("API Response Data:", data);
+
+          // Find the match data for the current matchId
+          const matchData = data.find(match => match.matchId === AppData.matchId);
+          if (!matchData) {
+              console.error(`No data found for matchId ${AppData.matchId}`);
+              return false;
+          }
+          console.log("Match Data:", matchData);
+          // Check if voterIds exists and is an array
+          if (matchData.voterIds && Array.isArray(matchData.voterIds)) {
+              const hasVoted = matchData.voterIds.includes(voterId);
+              console.log(`User with voterId ${voterId} has${hasVoted ? "" : " not"} voted total poll.`);
+              
+              if (hasVoted) {
+                  // Disable buttons if the user has voted
+                  document.getElementById('totalPollsConfirm').disabled = true;
+                  document.getElementById('overButton').disabled = true;
+                  document.getElementById('underButton').disabled = true;
+              }
+              return hasVoted;
+          } else {
+              console.error("voterIds is undefined or not an array in the match data.");
+              return false;
+          }
+      } catch (error) {
+          console.error("Error checking user vote:", error.message, error);
+          return false;
+      }
+    }
+
+    // Test the function with voterId 3
+    totalPollsCheckUserVote(3);
+    </script>
+    <!-- Bootstrap core JavaScript -->
+    <script>
+      // 獲取當前頁面的路徑
+      const currentUrl = window.location.pathname.split('/').pop();
+
+      // 選取所有導航連結
+      const navLinks = document.querySelectorAll('.nav-link');
+
+      // 遍歷連結，對應當前頁面設定樣式
+      navLinks.forEach(link => {
+          if (link.getAttribute('href') === currentUrl) {
+              link.classList.add('fw-bold'); // 加入 Bootstrap 樣式
+              link.setAttribute('aria-current', 'page'); // 設定 ARIA 標示
+          }
+      });
+    </script>
+    <!-- 按愛心功能 -->
+    <script>
+      function toggleHeart(buttonElement, countId) {
+        const heartIcon = buttonElement.querySelector('i');
+        const heartCountElement = document.getElementById(countId);
+        let count = parseInt(heartCountElement.textContent);
+        if (heartIcon.classList.contains('bi-heart')) {
+          heartIcon.classList.remove('bi-heart');
+          heartIcon.classList.add('bi-heart-fill');
+          count += 1; 
+        } else {
+          heartIcon.classList.remove('bi-heart-fill');
+          heartIcon.classList.add('bi-heart');
+          count -= 1;
+        }
+        heartCountElement.textContent = count;
+      }
+    </script>
+    <!-- spread poll功能 -->
+    <script>
+      let spreadCurrentVote = null;
+    
+      function handleSpreadVote(option) {
+        const homeButton = document.getElementById('homeButton');
+        const awayButton = document.getElementById('awayButton');
+        const homeVote = document.getElementById('homeVote');
+        const awayVote = document.getElementById('awayVote');
+    
+        // Parse current vote counts
+        const currentHomeVote = parseInt(homeVote.textContent, 10);
+        const currentAwayVote = parseInt(awayVote.textContent, 10);
+    
+        if (spreadCurrentVote === option) {
+          // Cancel vote
+          spreadCurrentVote = null;
+          if (option === 'home') {
+            homeButton.classList.remove('btn-primary');
+            homeButton.classList.add('btn-outline-primary');
+            homeVote.textContent = currentHomeVote - 1;
+          } else {
+            awayButton.classList.remove('btn-primary');
+            awayButton.classList.add('btn-outline-primary');
+            awayVote.textContent = currentAwayVote - 1;
+          }
+          homeButton.disabled = false;
+          awayButton.disabled = false;
+        } else {
+          // Add vote
+          spreadCurrentVote = option;
+          if (option === 'home') {
+            homeButton.classList.remove('btn-outline-primary');
+            homeButton.classList.add('btn-primary');
+            homeVote.textContent = currentHomeVote + 1;
+            awayButton.disabled = true;
+          } else {
+            awayButton.classList.remove('btn-outline-primary');
+            awayButton.classList.add('btn-primary');
+            awayVote.textContent = currentAwayVote + 1;
+            homeButton.disabled = true;
+          }
+        }
+      }
+    
+      function submitSpreadVote(option) {
+        if (!spreadCurrentVote) {
+          alert('Please make a selection before submitting.');
+          return;
+        }
+    
+        const endpoint =
+          option === 'home'
+            ? `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/spreadpolls/${AppData.matchId}/3/homeTeamVoteNumber`
+            : `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/spreadpolls/${AppData.matchId}/3/awayTeamVoteNumber`;
+        fetch(endpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            matchId: AppData.matchId,
+            voterIds: [3]
+          }),
+        })
+          .then((response) => {
+            if (!response.ok) throw new Error('投票失敗');
+            console.log('投票成功');
+            alert(`You voted: ${spreadCurrentVote}`);
+          })
+          .catch((error) => {
+            console.error('無法提交投票:', error);
+            alert('投票失敗，請稍後再試');
+          })
+          .finally(() => {
+            const homeButton = document.getElementById('homeButton');
+            const awayButton = document.getElementById('awayButton');
+            const spreadConfirm = document.getElementById('spreadConfirm');
+            spreadConfirm.disabled = true;
+            homeButton.disabled = true;
+            awayButton.disabled = true;
+          });
+    
+        console.log(`Vote submitted: ${spreadCurrentVote}`);
+      }
+    </script>    
+    <!-- get match data-->
+    <script>
+      const apiUrlMatches = "https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/matches";
+      async function fetchMatchData() {
+    try {
+        const response = await fetch(apiUrlMatches);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log("Fetched data:", data);
+
+        // Filter out any null values and find the match with the given matchId
+        const match = data.filter(m => m !== null).find(m => m.id === AppData.matchId); // Check for null and matchId
+
+        if (match) {
+            // Update the UI with match data
+            document.getElementById("awayLogo").src = match.awayTeamLogoUrl;
+            document.getElementById("awayRecord").textContent = `${match.homeTeamWin}-${match.awayTeamLose}`;
+            document.getElementById("awayTeamName").textContent = match.awayTeam;
+
+            document.getElementById("matchTime").textContent = new Date(match.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            document.getElementById("statusText").textContent = match.status;
+            document.getElementById("commentCount").textContent = match.comments;
+
+            document.getElementById("homeLogo").src = match.homeTeamLogoUrl;
+            document.getElementById("homeRecord").textContent = `${match.homeTeamWin}-${match.homeTeamLose}`;
+            document.getElementById("homeTeamName").textContent = match.homeTeam;
+        } else {
+            console.error(`No match found for matchId: ${AppData.matchId}`);
+        }
+    } catch (error) {
+        console.error("Unable to fetch match data:", error);
+    }
+}
+    fetchMatchData();
+
+
+
+    </script>
+    <!-- get spread data-->
+    <script>
+      const spreadApiUrl = "https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/spreadpolls"; 
+  
+      async function fetchSpreadData() {
+          try {
+              const response = await fetch(spreadApiUrl);
+              if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+  
+              const spreadData = await response.json();
+              const spreadInfo = spreadData.filter(s => s !== null).find(s => s.id === AppData.matchId);
+  
+              if (spreadInfo) {
+                  // 更新 Spread 資訊
+                  document.getElementById("spreadText").textContent = `Spread: ${spreadInfo.spread}`;
+                  document.getElementById("homeVote").textContent = spreadInfo.homeTeamVoteNumber;
+                  document.getElementById("awayVote").textContent = spreadInfo.awayTeamVoteNumber;
+              }
+          } catch (error) {
+            console.error('Error fetching data:', error);
+            alert('Failed to load match data.');
+          }
+      }
+  
+      // 初始化
+      fetchSpreadData();
+    </script>
+    <!-- over/under poll功能 + data -->
+    <script>
+      let voteSelection = null;
+
+      // Fetch data from API
+      async function fetchTotalPointsData() {
+        try {
+          const response = await fetch('https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/totalpolls');
+          const data = await response.json();
+          const TotalPointsInfo = data.filter(o => o !== null).find(o => o.id === AppData.matchId);
+          document.getElementById('totalPoints').textContent = `Total points: ${TotalPointsInfo.totalPoint}`;
+          //document.getElementById('closeTime').textContent = '4h'; 
+          document.getElementById("overVote").textContent = TotalPointsInfo.homeTeamVoteNumber;
+          document.getElementById("underVote").textContent = TotalPointsInfo.awayTeamVoteNumber;
+        } catch (error) {
+          console.error('Error fetching data:', error);
+          alert('Failed to load match data.');
+        }
+      }
+      // Handle voting logic
+      function handleTotalPointsVote(option) {
+        const underButton = document.getElementById('underButton');
+        const overButton = document.getElementById('overButton');
+        const underVote = document.getElementById('underVote');
+        const overVote = document.getElementById('overVote');
+
+        const currentOverVote = parseInt(overVote.textContent, 10);
+        const currentUnderVote = parseInt(underVote.textContent, 10);
+        if (voteSelection === option) {
+          // Cancel the vote, decrease the vote count for the selected option
+            voteSelection = null;
+            if (option === 'over') {
+                overButton.classList.remove('btn-primary');
+                overButton.classList.add('btn-outline-primary');
+                overVote.textContent = currentOverVote - 1;
+            } else {
+                underButton.classList.remove('btn-primary');
+                underButton.classList.add('btn-outline-primary');
+                underVote.textContent = currentUnderVote - 1;
+            }
+            overButton.disabled = false;
+            underButton.disabled = false;
+        } else {
+            // Register the new vote, increase the vote count
+            voteSelection = option;
+            if (option === 'over') {
+                overButton.classList.remove('btn-outline-primary');
+                overButton.classList.add('btn-primary');
+                overVote.textContent = currentOverVote + 1;
+                underButton.disabled = true;
+            } else {
+                underButton.classList.remove('btn-outline-primary');
+                underButton.classList.add('btn-primary');
+                underVote.textContent = currentUnderVote + 1;
+                overButton.disabled = true;
+            }
+        }
+      }
+      // Submit vote logic
+      function submitTotalPointsVote(option) {
+        if (!voteSelection) {
+          alert('Please make a selection before submitting.');
+          return;
+        }
+        const endpoint =
+          option ==='over'
+         ? `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/totalpolls/${AppData.matchId}/4/homeTeamVoteNumber`
+         : `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/totalpolls/${AppData.matchId}/4/awayTeamVoteNumber`;
+         fetch(endpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            matchId: AppData.matchId,
+            voterIds: [4]
+          }),
+        })
+         .then(response => {
+            if (!response.ok) throw new Error('投票失敗');
+            console.log('投票成功');
+          })
+          .catch((error) => {
+            console.error('無法提交投票:', error);
+            alert('投票失敗，請稍後再試');
+          })
+           .finally(() => {
+            const underButton = document.getElementById('underButton');
+            const overButton = document.getElementById('overButton');
+            const totalPollsConfirmed = document.getElementById('totalPollsConfirm');
+            underButton.disabled = true;
+            overButton.disabled = true;
+            totalPollsConfirmed.disabled = true;
+          });
+          console.log(`Vote submitted: ${voteSelection}`);
+      }
+      fetchTotalPointsData();
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>
