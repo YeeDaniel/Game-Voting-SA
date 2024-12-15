@@ -5,7 +5,6 @@ window.addEventListener('load', function () {
         updateButtonToLogout();
     }
 });
-
 // 登入邏輯
 document.getElementById('loginForm')?.addEventListener('submit', async function (event) {
     event.preventDefault();
@@ -24,11 +23,10 @@ document.getElementById('loginForm')?.addEventListener('submit', async function 
         if (response.ok) {
             const data = await response.json();
             if (data?.id) {
-                setCookie('userId', data.id, 1); // 存储用户 ID
-                //document.cookie = 
+                setCookie('userId', data.id, 1); // 存用户 ID
                 alert(`登入成功！\n使用者 ID: ${data.id}\n使用者名稱: ${data.name}`);
                 updateButtonToLogout();
-                window.location.href = 'hotGames.html'; // 跳转
+                window.location.href = 'hotGames.html'; 
             } else {
                 errorMessage.textContent = '該使用者不存在，請重新輸入！';
             }
@@ -43,7 +41,7 @@ document.getElementById('loginForm')?.addEventListener('submit', async function 
 
 // 按鈕內容變登出
 function updateButtonToLogout() {
-    const loginButton = document.getElementById('loginButton'); // 使用更精确的选择器
+    const loginButton = document.getElementById('loginButton'); 
     if (loginButton) {
         loginButton.textContent = '登出';
         loginButton.onclick = function () {
