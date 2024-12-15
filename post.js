@@ -128,7 +128,7 @@ function selectAwayTeam(teamId) {
     }
 }
 
-// 更新队伍信息的显示
+// 更新隊伍訊息
 function updateTeamInfo() {
     const awayTeamDiv = document.getElementById("awayTeamInfo");
     const homeTeamDiv = document.getElementById("homeTeamInfo");
@@ -165,67 +165,6 @@ function updateTeamInfo() {
     }
 }
 
-// 表單事件提交監聽
-/*document.getElementById("voteForm").addEventListener("submit", async function (event) {
-  event.preventDefault(); 
-
-  // 確認有選主隊及客隊
-  if (selectedHomeTeamId === null || selectedAwayTeamId === null) {
-    alert("請先選擇主隊和客隊！");
-    return;
-  }
-
-  // 拿主隊、客隊、時間訊息
-  const homeTeam = teamData.find(t => t.id === selectedHomeTeamId);
-  const awayTeam = teamData.find(t => t.id === selectedAwayTeamId);
-  const dateTimeInput = document.getElementById("meeting-time");
-  const selectedDateTime = new Date(dateTimeInput.value).toISOString().replace("T", " ").slice(0, 19);
-
-  if (!selectedDateTime) {
-    alert("請選擇日期和時間！");
-    return;
-  }
-  // 准备 POST 数据
-  const params = new URLSearchParams({
-    awayTeam: idToNameMapping[selectedAwayTeamId],
-    homeTeam: idToNameMapping[selectedHomeTeamId],
-    awayTeamLogoUrl: awayTeam.logoUrl,
-    homeTeamLogoUrl: homeTeam.logoUrl,
-    awayTeamLose: awayTeam.lose,
-    awayTeamWin: awayTeam.win,
-    homeTeamWin: homeTeam.win,
-    homeTeamLose: homeTeam.lose,
-    comments: 0,
-    date: selectedDateTime,
-    status: "onGoing"
-  }).toString();
-  
-  console.log("Post Data (Params):", params)
-
-    // 發送POST請求
-    try {
-        // 發送POST請求
-        const response = await fetch(
-          `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/matches?${params}`,
-          {
-            method: "POST",  
-          }
-        );
-    
-        if (response.ok) {
-          const data = await response.text(); // 獲取回應文本
-          console.log("Success:", data);
-          Swal.fire('建立成功', '比賽資料已建立。', 'success');
-        } else {
-          throw new Error("提交失敗，錯誤代碼：" + response.status);
-        }
-      } catch (error) {
-        console.error("發生錯誤:", error);
-        Swal.fire('建立失敗', '無法建立該比賽資料。', 'error');
-      }
-});*/
-
-
 // 頁面加載初始化
 document.addEventListener("DOMContentLoaded", () => {
     fetchTeamData();
@@ -252,15 +191,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 document.getElementById("voteForm").addEventListener("submit", async function (event) {
-    event.preventDefault(); // 阻止表单默认提交行为
+    event.preventDefault(); 
 
-    // 检查是否选择了主队和客队
+    // 檢查是否選了主隊和客隊
     if (selectedHomeTeamId === null || selectedAwayTeamId === null) {
         Swal.fire('請先選擇主隊及客隊', '', 'warning');
         return;
     }
 
-    // 弹出 SweetAlert 确认框
+    // 彈出sweetAlert框
     Swal.fire({
         title: '確定要新增?',
         text: '確認後將送出比賽資料',
@@ -272,7 +211,7 @@ document.getElementById("voteForm").addEventListener("submit", async function (e
         cancelButtonText: '取消'
     }).then((result) => {
         if (result.isConfirmed) {
-            // 如果用户点击“确认”，执行实际的提交逻辑
+            // 如果點確認，提交
             submitFormData();
         }
     });
@@ -281,7 +220,7 @@ document.getElementById("voteForm").addEventListener("submit", async function (e
 // 提交数据的逻辑
 async function submitFormData() {
     try {
-        // 获取主队、客队和时间信息
+        // 拿主隊、客隊、時間訊息
         const homeTeam = teamData.find(t => t.id === selectedHomeTeamId);
         const awayTeam = teamData.find(t => t.id === selectedAwayTeamId);
         const dateTimeInput = document.getElementById("meeting-time");
@@ -292,7 +231,7 @@ async function submitFormData() {
             return;
         }
 
-        // 准备 POST 数据
+        // POST 數據
         const params = new URLSearchParams({
             awayTeam: idToNameMapping[selectedAwayTeamId],
             homeTeam: idToNameMapping[selectedHomeTeamId],
@@ -307,7 +246,7 @@ async function submitFormData() {
             status: "onGoing"
         }).toString();
 
-        // 发起 POST 请求
+        // POST請求
         const response = await fetch(
             `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/matches?${params}`,
             { method: "POST" }
@@ -317,23 +256,21 @@ async function submitFormData() {
             const data = await response.text(); // 獲取回應文本
             console.log("Success:", data);
 
-            // 显示成功提示，并在用户确认后跳转
+            // 顯示成功，跳出視窗
             Swal.fire({
                 title: '建立成功',
                 text: '比賽資料已建立。',
                 icon: 'success',
                 confirmButtonText: '確定'
             }).then(() => {
-                window.location.href = 'create&delete.html'; // 跳转到目标页面
+                window.location.href = 'create&delete.html'; // 跳回新增刪除頁面
             });
         } else {
-            // 处理非 200 响应
             const error = await response.json();
             console.error("提交失敗，錯誤代碼：", response.status, error);
             Swal.fire('建立失敗', `提交失敗，錯誤代碼：${response.status}`, 'error');
         }
     } catch (error) {
-        // 捕获异常并显示错误提示
         console.error("發生錯誤:", error);
         Swal.fire('建立失敗', '無法建立該比賽資料。', 'error');
     }
