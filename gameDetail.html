@@ -705,6 +705,7 @@
         </div>
       </div>
     </section>
+    <!--GET COOKIE-->
     <script>
       function getCookie(name) {
       const cookies = document.cookie.split(';');
@@ -717,6 +718,7 @@
       return null;
     }
     </script>
+    <!--GET MATCH DETAIL-->
     <script>
       function getQueryParameter(param) {
         const urlParams = new URLSearchParams(window.location.search);
@@ -728,27 +730,7 @@
       AppData.spreadOption = null;
       AppData.totalPollOption = null;
     </script>
-    <script>/*
-      // Retrieve cookie function
-      function getCookie(name) {
-          const cookies = document.cookie.split('; ');
-          for (const cookie of cookies) {
-              const [key, value] = cookie.split('=');
-              if (key === name) return value;
-          }
-          return null; // Return null if not found
-      }
-
-      // Get user ID from cookie
-      const userId = getCookie('userId');
-      if (userId) {
-          console.log(`User ID: ${userId}`);
-          document.body.innerHTML += `<p>歡迎使用者，您的ID是：${userId}</p>`;
-      } else {
-          alert('未登入，請重新登入。');
-          window.location.href = 'index.html'; // Redirect to login page
-      }*/
-  </script>
+    <!--SPREAD POLL VOTE STATE IDENTIFICATION-->
     <script>
       async function spreadCheckUserVote(voterId) {
       const apiUrl = `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/spreadpolls`;
@@ -804,6 +786,7 @@
 
 
     </script>
+    <!--TOTAL POLLS VOTE STATE IDENTIFICATION-->
     <script>
      async function totalPollsCheckUserVote(voterId) {
       const apiUrl = `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/totalpolls`;
