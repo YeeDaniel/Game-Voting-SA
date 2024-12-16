@@ -74,7 +74,7 @@
               <img src="assets/poll.png" alt="Avatar" class="img-fluid my-5 mx-2" style="width: 40px;"> Over/Under
               <span class="d-flex align-items-center">
                 <p id="totalPoints" class="fw-bolder mb-0">Total points 224.5</p>
-                <button class="btn btn-primary ms-auto" id="totalPollsConfirm" onclick="submitTotalPointsVote()">Confirm Vote</button>
+                <button class="btn btn-primary ms-auto" id="totalPollsConfirm" onclick="submitTotalPointsVote(AppData.totalPollOption)">Confirm Vote</button>
               </span>
               
             </h5>
@@ -116,7 +116,7 @@
                     <p class="fw-bolder">Pick a team to cover the spread</p>
                     <span class="d-flex align-items-center">
                       <p class="fw-bolder"><span id="spreadText">Bos by 8.0</span></p>
-                      <button class="btn btn-primary ms-auto" id="spreadConfirm" onclick="submitSpreadVote()">Confirm Vote</button>
+                      <button class="btn btn-primary ms-auto" id="spreadConfirm" onclick="submitSpreadVote(AppData.spreadOption)">Confirm Vote</button>
                     </span>
                 </h5>
                 <p class="card-text fw-bolder">
@@ -706,6 +706,18 @@
       </div>
     </section>
     <script>
+      function getCookie(name) {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          if (cookie.startsWith(name + '=')) {
+              return cookie.substring(name.length + 1);
+          }
+      }
+      return null;
+    }
+    </script>
+    <script>
       function getQueryParameter(param) {
         const urlParams = new URLSearchParams(window.location.search);
         return urlParams.get(param);
@@ -713,21 +725,41 @@
       const AppData = {}
       matchId = getQueryParameter('matchId');
       AppData.matchId = parseInt(matchId, 10);
+      AppData.spreadOption = null;
+      AppData.totalPollOption = null;
     </script>
+    <script>/*
+      // Retrieve cookie function
+      function getCookie(name) {
+          const cookies = document.cookie.split('; ');
+          for (const cookie of cookies) {
+              const [key, value] = cookie.split('=');
+              if (key === name) return value;
+          }
+          return null; // Return null if not found
+      }
+
+      // Get user ID from cookie
+      const userId = getCookie('userId');
+      if (userId) {
+          console.log(`User ID: ${userId}`);
+          document.body.innerHTML += `<p>歡迎使用者，您的ID是：${userId}</p>`;
+      } else {
+          alert('未登入，請重新登入。');
+          window.location.href = 'index.html'; // Redirect to login page
+      }*/
+  </script>
     <script>
       async function spreadCheckUserVote(voterId) {
       const apiUrl = `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/spreadpolls`;
 
       try {
-          console.log("Fetching from API:", apiUrl);
-
           const response = await fetch(apiUrl); // Default is GET
           if (!response.ok) {
               throw new Error(`HTTP error! status: ${response.status}`);
           }
 
           const data = await response.json();
-          console.log("API Response Data:", data);
 
           // Find the match data for the current matchId
           const matchData = data.find(match => match.matchId === AppData.matchId);
@@ -735,38 +767,45 @@
               console.error(`No data found for matchId ${AppData.matchId}`);
               return false;
           }
+          // Check if voterId exists in voteAwayTeamIds or voteHomeTeamIds
+          const votedAway = matchData.voteAwayTeamIds?.includes(voterId) || false;
+          const votedHome = matchData.voteHomeTeamIds?.includes(voterId) || false;
 
-          console.log("Match Data:", matchData);
-
-          // Check if voterIds exists and is an array
-          if (matchData.voterIds && Array.isArray(matchData.voterIds)) {
-              const hasVoted = matchData.voterIds.includes(voterId);
-              console.log(`User with voterId ${voterId} has${hasVoted ? "" : " not"} voted spread.`);
-              
-              if (hasVoted) {
-                  // Disable buttons if the user has voted
-                  document.getElementById('spreadConfirm').disabled = true;
-                  document.getElementById('homeButton').disabled = true;
-                  document.getElementById('awayButton').disabled = true;
-              }
-              return hasVoted;
+          if (votedAway) {
+              console.log(`User with voterId ${voterId} voted for the Away Team.`);
+              // Update UI to reflect the vote
+              document.getElementById('spreadConfirm').disabled = true;
+              document.getElementById('homeButton').disabled = true;
+              document.getElementById('awayButton').disabled = true;
+              document.getElementById('awayButton').classList.remove('btn-outline-primary');
+              document.getElementById('awayButton').classList.add('btn-primary');
+          } else if (votedHome) {
+              console.log(`User with voterId ${voterId} voted for the Home Team.`);
+              // Update UI to reflect the vote
+              document.getElementById('spreadConfirm').disabled = true;
+              document.getElementById('homeButton').disabled = true;
+              document.getElementById('awayButton').disabled = true;
+              document.getElementById('homeButton').classList.remove('btn-outline-primary');
+              document.getElementById('homeButton').classList.add('btn-primary');
           } else {
-              console.error("voterIds is undefined or not an array in the match data.");
+              console.log(`User with voterId ${voterId} has not voted yet.`);
+          }
+
+          return { votedAway, votedHome };
+          } catch (error) {
+              console.error("Error checking user vote:", error.message, error);
               return false;
           }
-      } catch (error) {
-          console.error("Error checking user vote:", error.message, error);
-          return false;
       }
-    }
-
-    // Test the function with voterId 3
-    spreadCheckUserVote(3);
+      const userId = parseInt(getCookie('userId'), 10);
+      console.log(`User with voterId ${userId}`)
+        // Test the function with voterId 3
+        spreadCheckUserVote(userId);
 
 
     </script>
     <script>
-      async function totalPollsCheckUserVote(voterId) {
+     async function totalPollsCheckUserVote(voterId) {
       const apiUrl = `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/totalpolls`;
 
       try {
@@ -786,31 +825,43 @@
               console.error(`No data found for matchId ${AppData.matchId}`);
               return false;
           }
-          console.log("Match Data:", matchData);
-          // Check if voterIds exists and is an array
-          if (matchData.voterIds && Array.isArray(matchData.voterIds)) {
-              const hasVoted = matchData.voterIds.includes(voterId);
-              console.log(`User with voterId ${voterId} has${hasVoted ? "" : " not"} voted total poll.`);
-              
-              if (hasVoted) {
-                  // Disable buttons if the user has voted
-                  document.getElementById('totalPollsConfirm').disabled = true;
-                  document.getElementById('overButton').disabled = true;
-                  document.getElementById('underButton').disabled = true;
-              }
-              return hasVoted;
-          } else {
-              console.error("voterIds is undefined or not an array in the match data.");
-              return false;
-          }
-      } catch (error) {
-          console.error("Error checking user vote:", error.message, error);
-          return false;
-      }
-    }
 
-    // Test the function with voterId 3
-    totalPollsCheckUserVote(3);
+          console.log("Match Data:", matchData);
+
+          // Check if voterId exists in voteOverTeamIds or voteUnderTeamIds
+          const votedOver = matchData.voteHomeTeamIds?.includes(voterId) || false;
+          const votedUnder = matchData.voteAwayTeamIds?.includes(voterId) || false;
+
+          if (votedOver) {
+              console.log(`User with voterId ${voterId} voted for Over.`);
+              // Update UI to reflect the vote
+              document.getElementById('totalPollsConfirm').disabled = true;
+              document.getElementById('overButton').disabled = true;
+              document.getElementById('underButton').disabled = true;
+              document.getElementById('overButton').classList.remove('btn-outline-primary')
+              document.getElementById('overButton').classList.add('btn-primary');
+          } else if (votedUnder) {
+              console.log(`User with voterId ${voterId} voted for Under.`);
+              // Update UI to reflect the vote
+              document.getElementById('totalPollsConfirm').disabled = true;
+              document.getElementById('overButton').disabled = true;
+              document.getElementById('underButton').disabled = true;
+              document.getElementById('underButton').classList.remove('btn-outline-primary');
+              document.getElementById('underButton').classList.add('btn-primary');
+          } else {
+              console.log(`User with voterId ${voterId} has not voted for the total poll.`);
+          }
+
+          return { votedOver, votedUnder };
+        } catch (error) {
+            console.error("Error checking user vote:", error.message, error);
+            return false;
+        }
+      }
+      
+      // Test the function with voterId 3
+      totalPollsCheckUserVote(userId);
+
     </script>
     <!-- Bootstrap core JavaScript -->
     <script>
@@ -863,6 +914,7 @@
         if (spreadCurrentVote === option) {
           // Cancel vote
           spreadCurrentVote = null;
+          AppData.spreadOption = null;
           if (option === 'home') {
             homeButton.classList.remove('btn-primary');
             homeButton.classList.add('btn-outline-primary');
@@ -877,6 +929,7 @@
         } else {
           // Add vote
           spreadCurrentVote = option;
+          AppData.spreadOption = option;
           if (option === 'home') {
             homeButton.classList.remove('btn-outline-primary');
             homeButton.classList.add('btn-primary');
@@ -892,24 +945,26 @@
       }
     
       function submitSpreadVote(option) {
+        console.log('option',option);
         if (!spreadCurrentVote) {
           alert('Please make a selection before submitting.');
           return;
         }
-    
+        const userId = getCookie('userId');
         const endpoint =
           option === 'home'
-            ? `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/spreadpolls/${AppData.matchId}/3/homeTeamVoteNumber`
-            : `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/spreadpolls/${AppData.matchId}/3/awayTeamVoteNumber`;
+            ? `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/spreadpolls/${AppData.matchId}/${userId}/homeTeamVoteNumber`
+            : `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/spreadpolls/${AppData.matchId}/${userId}/awayTeamVoteNumber`;
+
         fetch(endpoint, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({
+          /*body: JSON.stringify({
             matchId: AppData.matchId,
-            voterIds: [3]
-          }),
+            voterIds: [userId]
+          }),*/
         })
           .then((response) => {
             if (!response.ok) throw new Error('投票失敗');
@@ -1031,6 +1086,7 @@
         if (voteSelection === option) {
           // Cancel the vote, decrease the vote count for the selected option
             voteSelection = null;
+            AppData.totalPollOption = null;
             if (option === 'over') {
                 overButton.classList.remove('btn-primary');
                 overButton.classList.add('btn-outline-primary');
@@ -1045,6 +1101,7 @@
         } else {
             // Register the new vote, increase the vote count
             voteSelection = option;
+            AppData.totalPollOption = option;
             if (option === 'over') {
                 overButton.classList.remove('btn-outline-primary');
                 overButton.classList.add('btn-primary');
@@ -1064,19 +1121,20 @@
           alert('Please make a selection before submitting.');
           return;
         }
+        const userId = getCookie('userId')
         const endpoint =
           option ==='over'
-         ? `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/totalpolls/${AppData.matchId}/4/homeTeamVoteNumber`
-         : `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/totalpolls/${AppData.matchId}/4/awayTeamVoteNumber`;
+         ? `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/totalpolls/${AppData.matchId}/${userId}/homeTeamVoteNumber`
+         : `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/totalpolls/${AppData.matchId}/${userId}/awayTeamVoteNumber`;
          fetch(endpoint, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({
+          /*body: JSON.stringify({
             matchId: AppData.matchId,
             voterIds: [4]
-          }),
+          }),*/
         })
          .then(response => {
             if (!response.ok) throw new Error('投票失敗');
