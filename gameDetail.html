@@ -74,7 +74,7 @@
               <img src="assets/poll.png" alt="Avatar" class="img-fluid my-5 mx-2" style="width: 40px;"> Over/Under
               <span class="d-flex align-items-center">
                 <p id="totalPoints" class="fw-bolder mb-0">Total points 224.5</p>
-                <button class="btn btn-primary ms-auto" id="totalPollsConfirm" onclick="submitTotalPointsVote()">Confirm Vote</button>
+                <button class="btn btn-primary ms-auto" id="totalPollsConfirm" onclick="submitTotalPointsVote(AppData.totalPollOption)">Confirm Vote</button>
               </span>
               
             </h5>
@@ -116,7 +116,7 @@
                     <p class="fw-bolder">Pick a team to cover the spread</p>
                     <span class="d-flex align-items-center">
                       <p class="fw-bolder"><span id="spreadText">Bos by 8.0</span></p>
-                      <button class="btn btn-primary ms-auto" id="spreadConfirm" onclick="submitSpreadVote()">Confirm Vote</button>
+                      <button class="btn btn-primary ms-auto" id="spreadConfirm" onclick="submitSpreadVote(AppData.spreadOption)">Confirm Vote</button>
                     </span>
                 </h5>
                 <p class="card-text fw-bolder">
@@ -706,6 +706,18 @@
       </div>
     </section>
     <script>
+      function getCookie(name) {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          if (cookie.startsWith(name + '=')) {
+              return cookie.substring(name.length + 1);
+          }
+      }
+      return null;
+    }
+    </script>
+    <script>
       function getQueryParameter(param) {
         const urlParams = new URLSearchParams(window.location.search);
         return urlParams.get(param);
@@ -713,6 +725,8 @@
       const AppData = {}
       matchId = getQueryParameter('matchId');
       AppData.matchId = parseInt(matchId, 10);
+      AppData.spreadOption = null;
+      AppData.totalPollOption = null;
     </script>
     <script>/*
       // Retrieve cookie function
@@ -783,9 +797,10 @@
               return false;
           }
       }
-
+      const userId = parseInt(getCookie('userId'), 10);
+      console.log(`User with voterId ${userId}`)
         // Test the function with voterId 3
-        spreadCheckUserVote(3);
+        spreadCheckUserVote(userId);
 
 
     </script>
@@ -843,9 +858,9 @@
             return false;
         }
       }
-
+      
       // Test the function with voterId 3
-      totalPollsCheckUserVote(3);
+      totalPollsCheckUserVote(userId);
 
     </script>
     <!-- Bootstrap core JavaScript -->
@@ -899,6 +914,7 @@
         if (spreadCurrentVote === option) {
           // Cancel vote
           spreadCurrentVote = null;
+          AppData.spreadOption = null;
           if (option === 'home') {
             homeButton.classList.remove('btn-primary');
             homeButton.classList.add('btn-outline-primary');
@@ -913,6 +929,7 @@
         } else {
           // Add vote
           spreadCurrentVote = option;
+          AppData.spreadOption = option;
           if (option === 'home') {
             homeButton.classList.remove('btn-outline-primary');
             homeButton.classList.add('btn-primary');
@@ -928,24 +945,26 @@
       }
     
       function submitSpreadVote(option) {
+        console.log('option',option);
         if (!spreadCurrentVote) {
           alert('Please make a selection before submitting.');
           return;
         }
-    
+        const userId = getCookie('userId');
         const endpoint =
           option === 'home'
-            ? `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/spreadpolls/${AppData.matchId}/3/homeTeamVoteNumber`
-            : `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/spreadpolls/${AppData.matchId}/3/awayTeamVoteNumber`;
+            ? `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/spreadpolls/${AppData.matchId}/${userId}/homeTeamVoteNumber`
+            : `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/spreadpolls/${AppData.matchId}/${userId}/awayTeamVoteNumber`;
+
         fetch(endpoint, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({
+          /*body: JSON.stringify({
             matchId: AppData.matchId,
-            voterIds: [3]
-          }),
+            voterIds: [userId]
+          }),*/
         })
           .then((response) => {
             if (!response.ok) throw new Error('投票失敗');
@@ -1067,6 +1086,7 @@
         if (voteSelection === option) {
           // Cancel the vote, decrease the vote count for the selected option
             voteSelection = null;
+            AppData.totalPollOption = null;
             if (option === 'over') {
                 overButton.classList.remove('btn-primary');
                 overButton.classList.add('btn-outline-primary');
@@ -1081,6 +1101,7 @@
         } else {
             // Register the new vote, increase the vote count
             voteSelection = option;
+            AppData.totalPollOption = option;
             if (option === 'over') {
                 overButton.classList.remove('btn-outline-primary');
                 overButton.classList.add('btn-primary');
@@ -1100,19 +1121,20 @@
           alert('Please make a selection before submitting.');
           return;
         }
+        const userId = getCookie('userId')
         const endpoint =
           option ==='over'
-         ? `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/totalpolls/${AppData.matchId}/3/homeTeamVoteNumber`
-         : `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/totalpolls/${AppData.matchId}/3/awayTeamVoteNumber`;
+         ? `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/totalpolls/${AppData.matchId}/${userId}/homeTeamVoteNumber`
+         : `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/totalpolls/${AppData.matchId}/${userId}/awayTeamVoteNumber`;
          fetch(endpoint, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({
+          /*body: JSON.stringify({
             matchId: AppData.matchId,
             voterIds: [4]
-          }),
+          }),*/
         })
          .then(response => {
             if (!response.ok) throw new Error('投票失敗');
