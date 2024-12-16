@@ -145,6 +145,7 @@
             })
             .then(data => {
                 // 获取容器
+                data.sort((a, b) => b.id - a.id);
                 const container = document.getElementById('matches-container');
 
                 // 遍历 JSON 数据生成卡片
