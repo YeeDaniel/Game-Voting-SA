@@ -87,8 +87,8 @@
                   Over <i class="bi bi-caret-up-fill"></i> <span class="vote-count" id="overVote">0</span>
                 </button>         
               </div>
-              <p class="d-flex">Closes in
-                <span class="mx-1" id="closeTime">4h</span>
+              <p class="d-flex" id="totalClosesIn">Closes in
+                <span class="mx-1" id="totalClose">4h</span>
               </p>
               <div class="row my-1">
                 <div class="col">
@@ -128,7 +128,7 @@
                           Home <span class="vote-count mx-1" id="homeVote">0</span>
                       </button>
                     </div>
-                    <p>Closes in <span id="spreadCloses">4h</span></p>
+                    <p id="spreadClosesIn">Closes in <span id="spreadClose">4h</span></p>
                     <div class="row my-1">
                       <div class="col ">
                         <button class="btn d-flex" id="heartButton1" style="border: none;" onclick="toggleHeart(this, 'count1')">
@@ -993,6 +993,9 @@
             document.getElementById("awayTeamName").textContent = match.awayTeam;
 
             document.getElementById("matchTime").textContent = new Date(match.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            AppData.expirationTime = match.date;
+            
             document.getElementById("statusText").textContent = match.status;
             document.getElementById("commentCount").textContent = match.comments;
 
@@ -1138,6 +1141,45 @@
           console.log(`Vote submitted: ${voteSelection}`);
       }
       fetchTotalPointsData();
+    </script>
+    <script>
+      function updateTimeRemaining() {
+        const now = new Date(); // 當前時間
+        const endTime = new Date(AppData.expirationTime); // 比賽結束時間
+        const timeDiff = endTime - now; // 時間差（毫秒）
+        console.log("game time: ",endTime);
+        console.log("time now: ",now);
+        if (timeDiff <= 0) {
+          document.getElementById('totalClosesIn').textContent = "Poll ended";
+          document.getElementById("spreadClosesIn").textContent = "Poll ended";
+          document.getElementById("underButton").disabled = true;
+          document.getElementById("overButton").disabled = true;
+          document.getElementById("totalPollsConfirm").disabled = true;
+          document.getElementById("homeButton").disabled = true;
+          document.getElementById("awayButton").disabled = true;
+          document.getElementById("spreadConfirm").disabled = true;
+          clearInterval(timer); // 停止計時器
+          return;
+        }
+
+        // 計算剩餘時間的時、分、秒
+        const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24)); // 天數
+        const hours = Math.floor(timeDiff % (1000 * 60 * 60 * 24)/ (1000 * 60 * 60));
+        const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+        // 更新前端顯示
+        document.getElementById("spreadClose").textContent =
+          `${days} 天 ${hours} 小時 ${minutes} 分 ${seconds} 秒`;
+        document.getElementById("totalClose").textContent =
+          `${days} 天 ${hours} 小時 ${minutes} 分 ${seconds} 秒`;
+      }
+
+      // 每秒更新一次倒數計時
+      const timer = setInterval(updateTimeRemaining, 1000);
+
+      // 初始化顯示
+      updateTimeRemaining();
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
