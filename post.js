@@ -218,7 +218,7 @@ document.getElementById("voteForm").addEventListener("submit", async function (e
 });
 
 // 提交資訊的邏輯
-async function submitFormData() {
+/*async function submitFormData() {
     try {
         // 拿主隊、客隊、時間訊息
         const homeTeam = teamData.find(t => t.id === selectedHomeTeamId);
@@ -274,4 +274,152 @@ async function submitFormData() {
         console.error("發生錯誤:", error);
         Swal.fire('建立失敗', '無法建立該比賽資料。', 'error');
     }
-}
+}*/
+async function submitFormData() {
+    try {
+        const homeTeam = teamData.find(t => t.id === selectedHomeTeamId);
+        const awayTeam = teamData.find(t => t.id === selectedAwayTeamId);
+        const dateTimeInput = document.getElementById("meeting-time");
+        const selectedDateTime = new Date(dateTimeInput.value).toISOString().replace("T", " ").slice(0, 19);
+
+        if (!selectedDateTime) {
+            Swal.fire('錯誤', '請選擇日期和時間！', 'error');
+            return;
+        }
+
+        // 构建比赛参数
+        const matchParams = new URLSearchParams({
+            awayTeam: idToNameMapping[selectedAwayTeamId],
+            homeTeam: idToNameMapping[selectedHomeTeamId],
+            awayTeamLogoUrl: awayTeam.logoUrl,
+            homeTeamLogoUrl: homeTeam.logoUrl,
+            awayTeamLose: awayTeam.lose,
+            awayTeamWin: awayTeam.win,
+            homeTeamWin: homeTeam.win,
+            homeTeamLose: homeTeam.lose,
+            comments: 0,
+            date: selectedDateTime,
+            status: "onGoing"
+        }).toString();
+
+        // POST比赛数据到matches API
+        const matchResponse = await fetch(
+            `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/matches?${matchParams}`,
+            { method: "POST" }
+        );
+
+        // 检查响应是否成功
+        if (!matchResponse.ok) {
+            const errorText = await matchResponse.text();
+            console.error("Match submission failed:", errorText);
+            Swal.fire('建立失敗', `提交比賽資料失敗，錯誤代碼：${matchResponse.status}`, 'error');
+            return;
+        }
+        
+
+        // 检查响应是否为 JSON
+        const matchRawResponse = await matchResponse.text();
+        console.log("Raw match API response:", matchRawResponse);
+
+        let matchId;
+        if (matchResponse.headers.get("Content-Type")?.includes("application/json")) {
+            try {
+                const matchData = JSON.parse(matchRawResponse); // 解析 JSON 数据
+                matchId = matchData.id;
+                console.log("Parsed matchId:", matchId);
+            } catch (error) {
+                console.error("Failed to parse match API response as JSON:", error);
+                Swal.fire('錯誤', '伺服器返回的比賽數據無效，請聯繫管理員。', 'error');
+                return;
+            }
+        } else {
+            matchId = parseInt(matchRawResponse.trim(), 10); // 解析为整数
+            if (isNaN(matchId)) {
+                console.error("Invalid matchId:", matchRawResponse);
+                Swal.fire('錯誤', '伺服器返回的比賽 ID 無效，請聯繫管理員。', 'error');
+                return;
+            }
+        }
+
+        // 获取用户输入的 spread 值
+        const spreadInput = document.getElementById("spreadPollInput").value;
+        const spread = parseFloat(spreadInput); // 转换为浮点数
+        if (isNaN(spread)) {
+            Swal.fire('錯誤', '請輸入有效的 Spread 值！', 'error');
+            return;
+        }
+
+        // 构建 Spread Poll 数据
+        const spreadPollParams = new URLSearchParams({
+            matchId: matchId,
+            spread: spread
+        }).toString();
+
+        // POST Spread 数据到 spreadpolls API
+        const spreadPollResponse = await fetch(
+            `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/spreadpolls/create?${spreadPollParams}`,
+            { method: "POST" }
+        );
+
+        if (spreadPollResponse.ok) {
+            console.log("Spread Poll created successfully.");
+            Swal.fire({
+                title: '建立成功',
+                text: '比賽資料及 Spread Poll 已建立。',
+                icon: 'success',
+                confirmButtonText: '確定'
+            }).then(() => {
+                window.location.href = 'create&delete.html'; // 跳回新增刪除頁面
+            });
+        } else {
+            const errorText = await spreadPollResponse.text();
+            console.error("Spread Poll submission failed:", errorText);
+            Swal.fire('Spread Poll 建立失敗', `錯誤代碼：${spreadPollResponse.status}`, 'error');
+        }
+        const totalPointInput = document.getElementById("totalPointInput").value;
+        const totalPoint = parseFloat(totalPointInput); 
+        if (isNaN(totalPoint)) {
+            Swal.fire('錯誤', '請輸入有效的 totalPoint 值！', 'error');
+            return;
+        }
+
+        
+        const totalPointParams = new URLSearchParams({
+            matchId: matchId,
+            totalpoint: totalPoint
+        }).toString();
+
+        // POST totalpoll 數據到 totalpolls API
+        const totalPointResponse = await fetch(
+            `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/totalpolls/create?${totalPointParams}`,
+            { method: "POST" }
+        );
+
+        if (totalPointResponse.ok) {
+            console.log("Total poll created successfully.");
+            Swal.fire({
+                title: '建立成功',
+                text: '比賽資料及 Total Poll 已建立。',
+                icon: 'success',
+                confirmButtonText: '確定'
+            }).then(() => {
+                window.location.href = 'create&delete.html'; // 跳回新增刪除頁面
+            });
+        } else {
+            const errorText = await totalPointResponse.text();
+            console.error("Total poll submission failed:", errorText);
+            Swal.fire('Total Poll 建立失敗', `錯誤代碼：${totalPointResponse.status}`, 'error');
+        }
+
+    } 
+    catch (error) {
+        console.error("發生錯誤:", error);
+        Swal.fire('建立失敗', '無法建立資料，請稍後再試。', 'error');
+    }
+
+    
+    } 
+
+
+
+
