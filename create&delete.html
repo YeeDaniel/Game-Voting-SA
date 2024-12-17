@@ -107,7 +107,7 @@
     <script>
         const apiBaseUrl = "https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/matches";
 
-        // 1. 取得比賽資料
+        //取得比賽資料
         function getMatches() {
             fetch(apiBaseUrl)
                 .then(response => response.json())
@@ -164,7 +164,7 @@
                 });
         }
 
-        // 2. 刪除比賽資料
+        //刪除比賽資料
         function deleteMatch(matchId, cardElement) {
             fetch(`${apiBaseUrl}/${matchId}`, {
                 method: 'DELETE',
@@ -183,7 +183,7 @@
                 });
         }
 
-        // 3. 綁定刪除按鈕事件
+        //綁定刪除按鈕事件
 
         document.getElementById('matches-container').addEventListener('click', event => {
             if (event.target.classList.contains('delete-btn')) {
