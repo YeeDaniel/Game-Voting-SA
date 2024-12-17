@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,11 +13,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
-
-
   <!-- 引入 SweetAlert 的 css -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.20/dist/sweetalert2.min.css">
-
   <!-- 引入 SweetAlert 的 JavaScript -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.20/dist/sweetalert2.all.min.js"></script>
   <!--<script src="checkRedirect.js"></script>-->
@@ -40,7 +36,6 @@
       position: relative;
       left: 60px;
     }
-
 
     body {
       background-color: rgba(250, 239, 214, 0.5);
@@ -84,20 +79,12 @@
 </head>
 
 <body>
-  <!--navbar start-->
 
   <ul class="nav justify-content-between align-items-center" style="background-color: #FAEFD6;">
-
     <li class="nav-item flex-grow-1 text-center">
       <p class="nav-link text-dark mb-0">建立投票</p>
     </li>
   </ul>
-
-
-
-  <!--the end of navbar-->
-
-
 
   <div class="container mt-5">
     <div class="row justify-content-between" style="flex: 0 0 48%;">
@@ -142,14 +129,12 @@
     <!-- Total Point -->
     <div class="container mt-5">
   <div class="row justify-content-between">
-    <!-- Total Point -->
     <div class="col-5 text-center">
       <div class="input-group">
         <label for="totalPointInput" class="input-group-text">Total Point</label>
         <input type="number" class="form-control" id="totalPointInput" placeholder="輸入總得分">
       </div>
     </div>
-
     <!-- Spread Poll -->
     <div class="col-5 text-center">
       <div class="input-group">
@@ -159,11 +144,6 @@
     </div>
   </div>
 </div>
-
-    
-
-
-
 
     <form id="voteForm">
       <div class="container h-100">
@@ -180,10 +160,7 @@
           </div>
         </div>
       </div>
-    </form>
-
-
-    <script src="post.js"></script>
+    </form>   
 </body>
-
+<script src="post.js"></script>
 </html>
