@@ -185,7 +185,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 最小值跟台灣時間一樣
     dateTimeInput.setAttribute('min', formattedNow); // 限制只能選未來時間
-    dateTimeInput.value = formattedNow; // 預設為目前時間
+    dateTimeInput.value = formattedNow;
 });
 
 
@@ -211,70 +211,11 @@ document.getElementById("voteForm").addEventListener("submit", async function (e
         cancelButtonText: '取消'
     }).then((result) => {
         if (result.isConfirmed) {
-            // 如果點確認，提交
             submitFormData();
         }
     });
 });
 
-// 提交資訊的邏輯
-/*async function submitFormData() {
-    try {
-        // 拿主隊、客隊、時間訊息
-        const homeTeam = teamData.find(t => t.id === selectedHomeTeamId);
-        const awayTeam = teamData.find(t => t.id === selectedAwayTeamId);
-        const dateTimeInput = document.getElementById("meeting-time");
-        const selectedDateTime = new Date(dateTimeInput.value).toISOString().replace("T", " ").slice(0, 19);
-
-        if (!selectedDateTime) {
-            Swal.fire('錯誤', '請選擇日期和時間！', 'error');
-            return;
-        }
-
-        // POST 數據
-        const params = new URLSearchParams({
-            awayTeam: idToNameMapping[selectedAwayTeamId],
-            homeTeam: idToNameMapping[selectedHomeTeamId],
-            awayTeamLogoUrl: awayTeam.logoUrl,
-            homeTeamLogoUrl: homeTeam.logoUrl,
-            awayTeamLose: awayTeam.lose,
-            awayTeamWin: awayTeam.win,
-            homeTeamWin: homeTeam.win,
-            homeTeamLose: homeTeam.lose,
-            comments: 0,
-            date: selectedDateTime,
-            status: "onGoing"
-        }).toString();
-
-        // POST請求
-        const response = await fetch(
-            `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/matches?${params}`,
-            { method: "POST" }
-        );
-
-        if (response.ok) {
-            const data = await response.text(); // 獲取回應文本
-            console.log("Success:", data);
-
-            // 顯示成功，跳出視窗
-            Swal.fire({
-                title: '建立成功',
-                text: '比賽資料已建立。',
-                icon: 'success',
-                confirmButtonText: '確定'
-            }).then(() => {
-                window.location.href = 'create&delete.html'; // 跳回新增刪除頁面
-            });
-        } else {
-            const error = await response.json();
-            console.error("提交失敗，錯誤代碼：", response.status, error);
-            Swal.fire('建立失敗', `提交失敗，錯誤代碼：${response.status}`, 'error');
-        }
-    } catch (error) {
-        console.error("發生錯誤:", error);
-        Swal.fire('建立失敗', '無法建立該比賽資料。', 'error');
-    }
-}*/
 async function submitFormData() {
     try {
         const homeTeam = teamData.find(t => t.id === selectedHomeTeamId);
@@ -287,7 +228,7 @@ async function submitFormData() {
             return;
         }
 
-        // 构建比赛参数
+        // 比賽參數
         const matchParams = new URLSearchParams({
             awayTeam: idToNameMapping[selectedAwayTeamId],
             homeTeam: idToNameMapping[selectedHomeTeamId],
@@ -302,29 +243,24 @@ async function submitFormData() {
             status: "onGoing"
         }).toString();
 
-        // POST比赛数据到matches API
+        // POST比賽數據到matches API
         const matchResponse = await fetch(
             `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/matches?${matchParams}`,
             { method: "POST" }
         );
-
-        // 检查响应是否成功
         if (!matchResponse.ok) {
             const errorText = await matchResponse.text();
             console.error("Match submission failed:", errorText);
             Swal.fire('建立失敗', `提交比賽資料失敗，錯誤代碼：${matchResponse.status}`, 'error');
             return;
         }
-        
-
-        // 检查响应是否为 JSON
         const matchRawResponse = await matchResponse.text();
         console.log("Raw match API response:", matchRawResponse);
 
         let matchId;
         if (matchResponse.headers.get("Content-Type")?.includes("application/json")) {
             try {
-                const matchData = JSON.parse(matchRawResponse); // 解析 JSON 数据
+                const matchData = JSON.parse(matchRawResponse); // 解析 JSON 數據
                 matchId = matchData.id;
                 console.log("Parsed matchId:", matchId);
             } catch (error) {
@@ -333,7 +269,7 @@ async function submitFormData() {
                 return;
             }
         } else {
-            matchId = parseInt(matchRawResponse.trim(), 10); // 解析为整数
+            matchId = parseInt(matchRawResponse.trim(), 10); // 解析為數據
             if (isNaN(matchId)) {
                 console.error("Invalid matchId:", matchRawResponse);
                 Swal.fire('錯誤', '伺服器返回的比賽 ID 無效，請聯繫管理員。', 'error');
@@ -343,19 +279,19 @@ async function submitFormData() {
 
         // 获取用户输入的 spread 值
         const spreadInput = document.getElementById("spreadPollInput").value;
-        const spread = parseFloat(spreadInput); // 转换为浮点数
+        const spread = parseFloat(spreadInput); 
         if (isNaN(spread)) {
             Swal.fire('錯誤', '請輸入有效的 Spread 值！', 'error');
             return;
         }
 
-        // 构建 Spread Poll 数据
+        // 建構 Spread Poll 數據
         const spreadPollParams = new URLSearchParams({
             matchId: matchId,
             spread: spread
         }).toString();
 
-        // POST Spread 数据到 spreadpolls API
+        // POST Spread 數據到 spreadpolls API
         const spreadPollResponse = await fetch(
             `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/spreadpolls/create?${spreadPollParams}`,
             { method: "POST" }
@@ -417,7 +353,6 @@ async function submitFormData() {
         Swal.fire('建立失敗', '無法建立資料，請稍後再試。', 'error');
     }
 
-    
     } 
 
 
