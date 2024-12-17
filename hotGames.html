@@ -135,7 +135,7 @@
     </div>
 
     <script>
-        // 使用 fetch 获取 JSON 数据
+        // 使用 fetch 獲取 JSON 數據
         fetch('https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/matches') // 替换为你的实际 API 地址
             .then(response => {
                 if (!response.ok) {
@@ -144,11 +144,11 @@
                 return response.json();
             })
             .then(data => {
-                // 获取容器
+                // 獲取容器
                 data.sort((a, b) => b.id - a.id);
                 const container = document.getElementById('matches-container');
 
-                // 遍历 JSON 数据生成卡片
+    
                 data.forEach(match => {
                     const card = document.createElement('button');
                     card.className = 'card mt-3 border-0 d-flex flex-column align-items-center justify-content-center shadow';
