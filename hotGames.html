@@ -21,6 +21,7 @@
         <!-- 引入 SweetAlert 的 JavaScript -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.20/dist/sweetalert2.all.min.js"></script>
         
+        <script src="login.js"></script>
         <style>
             body {
                 background-color: rgba(250, 240, 216, 0.5);
@@ -54,6 +55,12 @@
             .comments {
                 font-size: 12px;
                 color: gray;
+            }
+            .btn-hover-effect {
+                transition: transform 0.2s ease-in-out;
+            }
+            .btn-hover-effect:hover {
+                transform: scale(1.1);
             }
         </style>
         <script>
@@ -97,7 +104,11 @@
                 <a class="nav-link text-dark" href="">國際棒球</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" href="">個人</a>
+                <a class="nav-link text-dark" href="profile.html">個人</a>
+            </li>
+            <li class="nav-item">
+                <button id="loginButton" class="btn align-self-center btn-hover-effect" type="submit"
+            onclick="window.location.href='login.html';"style="background-color: rgb(242, 208, 134);">登入</button>
             </li>
         </ul>
     
@@ -119,46 +130,8 @@
 <body>
 
     <div class="container-fluid min-vh-100 d-flex flex-column align-items-center" style="max-width: 800px; background-color: #FAE1D8;">
-        <button class="card mt-3  border-0 d-flex flex-column align-items-center justify-content-center shadow"
-            style="width: 90%; max-width: 1000px; background-color: #F3EAFD; cursor: pointer;"
-            onclick="window.location.href='post.html';">
-            <div class="d-flex align-items-center justify-content-between w-100">
-
-                <!-- 左邊球隊Logo和資訊 -->
-                <div class="d-flex align-items-center d-flex justify-content-center">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/c/c2/Minnesota_Timberwolves_logo.svg"
-                        alt="Wolves Logo" class="team-logo me-3">
-                    <div class="team-info">
-                        <div>8-7</div>
-                        <div>Wolves</div>
-                    </div>
-                </div>
-                <!-- 中間時間和比賽資訊 -->
-                <div class="flex-grow-1 text-center ">
-                    <div class="time-info">4:30 AM</div>
-                    <div>BOS by 8.0</div>
-                </div>
-                <!-- 右邊球隊Logo和資訊 -->
-                <div class="d-flex align-items-center">
-                    <div class="team-info text-end me-3">
-                        <div>13-3</div>
-                        <div>Celtics</div>
-                    </div>
-                    <img src="https://upload.wikimedia.org/wikipedia/en/8/8f/Boston_Celtics.svg" alt="Celtics Logo"
-                        class="team-logo">
-                </div>
-            </div>
-            <!-- 卡片底部文字與互動 -->
-            <div class="mt-3 w-100 text-start">
-                <p class="mb-2">綠色三分雨！布朗單場7記三分 塞爾提克笑擁5連勝</p>
-                <div class="d-flex align-items-center">
-                    <span class="comments me-2">
-                        <i class="bi bi-chat-dots"></i> 341
-                    </span>
-                </div>
-            </div>
-        </button>
-        <div id="matches-container" class="w-100 min-vh-100 d-flex flex-column align-items-center"></div>
+        
+        <div id="matches-container" class="w-100 min-vh-100 d-flex flex-column align-items-center" onclick="window.location.href='gameDetail.html';"></div>
     </div>
 
     <script>
@@ -226,5 +199,7 @@
                 container.innerHTML = `<p class="text-danger">無法加載比賽數據。請稍後重試。</p>`;
             });
     </script>
+    
 </body>
+
 </html>

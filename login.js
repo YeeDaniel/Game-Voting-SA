@@ -1,4 +1,4 @@
-// 初始化检查登录状态
+
 window.addEventListener('load', function () {
     const storedUserId = getCookie('userId');
     if (storedUserId) {
@@ -6,7 +6,6 @@ window.addEventListener('load', function () {
     }
 });
 
-// 登录逻辑
 document.getElementById('loginForm')?.addEventListener('submit', async function (event) {
     event.preventDefault();
     const username = document.getElementById('username')?.value.trim();
@@ -24,11 +23,10 @@ document.getElementById('loginForm')?.addEventListener('submit', async function 
         if (response.ok) {
             const data = await response.json();
             if (data?.id) {
-                setCookie('userId', data.id, 1); // 存储用户 ID
-                //document.cookie = 
+                setCookie('userId', data.id, 1); // 存用户 ID
                 alert(`登入成功！\n使用者 ID: ${data.id}\n使用者名稱: ${data.name}`);
                 updateButtonToLogout();
-                window.location.href = 'hotGames.html'; // 跳转
+                window.location.href = 'hotGames.html'; 
             } else {
                 errorMessage.textContent = '該使用者不存在，請重新輸入！';
             }
@@ -41,9 +39,9 @@ document.getElementById('loginForm')?.addEventListener('submit', async function 
     }
 });
 
-// 更新按钮为登出
+// 按鈕內容變登出
 function updateButtonToLogout() {
-    const loginButton = document.getElementById('loginButton'); // 使用更精确的选择器
+    const loginButton = document.getElementById('loginButton'); 
     if (loginButton) {
         loginButton.textContent = '登出';
         loginButton.onclick = function () {
@@ -54,9 +52,9 @@ function updateButtonToLogout() {
     }
 }
 
-// 取消按钮绑定
+// 取消按鈕绑定
 document.getElementById('cancelButton')?.addEventListener('click', function () {
-    window.location.href = 'test.html';
+    window.location.href = 'hotGames.html';
 });
 
 // Cookie 操作函数
@@ -81,4 +79,3 @@ function getCookie(name) {
 function deleteCookie(name) {
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
 }
-

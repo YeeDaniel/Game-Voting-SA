@@ -217,7 +217,7 @@ document.getElementById("voteForm").addEventListener("submit", async function (e
     });
 });
 
-// 提交数据的逻辑
+// 提交資訊的邏輯
 async function submitFormData() {
     try {
         // 拿主隊、客隊、時間訊息

@@ -1,0 +1,327 @@
+{
+  "matches": [
+    {
+      "awayTeam": "金州勇士隊",
+      "awayTeamLogoUrl": "https://picsum.photos/200/200",
+      "awayTeamLose": 7,
+      "comments": 341,
+      "date": "2024-11-30 04:30:00",
+      "homeTeam": "洛杉磯湖人隊",
+      "homeTeamLogoUrl": "https://picsum.photos/200/200",
+      "homeTeamLose": 5,
+      "homeTeamWin": 13,
+      "id": "0",
+      "status": "onGoing"
+    },
+    null,
+    {
+      "awayTeam": "休士頓火箭隊",
+      "awayTeamLogoUrl": "https://picsum.photos/200/200",
+      "awayTeamLose": 4,
+      "comments": 230,
+      "date": "2024-12-02 20:15:00",
+      "homeTeam": "費城76人隊",
+      "homeTeamLogoUrl": "https://picsum.photos/200/200",
+      "homeTeamLose": 6,
+      "homeTeamWin": 8,
+      "id": "2",
+      "status": "onGoing"
+    },
+    {
+      "awayTeam": "紐約尼克隊",
+      "awayTeamLogoUrl": "https://picsum.photos/200/200",
+      "awayTeamLose": 9,
+      "comments": 540,
+      "date": "2024-12-03 06:45:00",
+      "homeTeam": "芝加哥公牛隊",
+      "homeTeamLogoUrl": "https://picsum.photos/200/200",
+      "homeTeamLose": 4,
+      "homeTeamWin": 14,
+      "id": "3",
+      "status": "onGoing"
+    },
+    {
+      "awayTeam": "達拉斯獨行俠隊",
+      "awayTeamLogoUrl": "https://picsum.photos/200/200",
+      "awayTeamLose": 6,
+      "comments": 175,
+      "date": "2024-12-04 14:00:00",
+      "homeTeam": "奧克拉荷馬雷霆隊",
+      "homeTeamLogoUrl": "https://picsum.photos/200/200",
+      "homeTeamLose": 7,
+      "homeTeamWin": 12,
+      "id": "4",
+      "status": "onGoing"
+    },
+    {
+      "awayTeam": "熱火",
+      "awayTeamLogoUrl": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/mia.png&scale=crop&cquality=40&location=origin&w=80&h=80",
+      "awayTeamLose": 12,
+      "awayTeamWin": 10,
+      "comments": 0,
+      "date": "2024-12-02 20:15:00",
+      "homeTeam": "火箭",
+      "homeTeamLogoUrl": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/hou.png&scale=crop&cquality=40&location=origin&w=80&h=80",
+      "homeTeamLose": 8,
+      "homeTeamWin": 17,
+      "id": 5,
+      "status": "onGoing"
+    }
+  ],
+  "spreadPolls": [
+    {
+      "awayTeamVoteNumber": 12,
+      "homeTeamVoteNumber": 23,
+      "id": 0,
+      "matchId": 0,
+      "spread": 8
+    },
+    {
+      "awayTeamVoteNumber": 30,
+      "homeTeamVoteNumber": 40,
+      "id": 1,
+      "matchId": 1,
+      "spread": 6
+    },
+    {
+      "awayTeamVoteNumber": 56,
+      "homeTeamVoteNumber": 22,
+      "id": 2,
+      "matchId": 2,
+      "spread": 10
+    },
+    {
+      "awayTeamVoteNumber": 6,
+      "homeTeamVoteNumber": 8,
+      "id": 3,
+      "matchId": 3,
+      "spread": 5
+    },
+    {
+      "awayTeamVoteNumber": 77,
+      "homeTeamVoteNumber": 50,
+      "id": 4,
+      "matchId": 4,
+      "spread": 4
+    }
+  ],
+  "team": [
+    {
+      "id": 0,
+      "logoUrl": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/bos.png&scale=crop&cquality=40&location=origin&w=80&h=80",
+      "lose": 5,
+      "win": 19
+    },
+    {
+      "id": 1,
+      "logoUrl": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/ny.png&scale=crop&cquality=40&location=origin&w=80&h=80",
+      "lose": 15,
+      "win": 10
+    },
+    {
+      "id": 2,
+      "logoUrl": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/bkn.png&scale=crop&cquality=40&location=origin&w=80&h=80",
+      "lose": 14,
+      "win": 10
+    },
+    {
+      "id": 3,
+      "logoUrl": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/phi.png&scale=crop&cquality=40&location=origin&w=80&h=80",
+      "lose": 15,
+      "win": 7
+    },
+    {
+      "id": 4,
+      "logoUrl": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/tor.png&scale=crop&cquality=40&location=origin&w=80&h=80",
+      "lose": 18,
+      "win": 7
+    },
+    {
+      "id": 5,
+      "logoUrl": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/gs.png&scale=crop&cquality=40&location=origin&w=80&h=80",
+      "lose": 10,
+      "win": 14
+    },
+    {
+      "id": 6,
+      "logoUrl": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/lac.png&scale=crop&cquality=40&location=origin&w=80&h=80",
+      "lose": 11,
+      "win": 14
+    },
+    {
+      "id": 7,
+      "logoUrl": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/lal.png&scale=crop&cquality=40&location=origin&w=80&h=80",
+      "lose": 11,
+      "win": 13
+    },
+    {
+      "id": 8,
+      "logoUrl": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/phx.png&scale=crop&cquality=40&location=origin&w=80&h=80",
+      "lose": 11,
+      "win": 12
+    },
+    {
+      "id": 9,
+      "logoUrl": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/sac.png&scale=crop&cquality=40&location=origin&w=80&h=80",
+      "lose": 13,
+      "win": 12
+    },
+    {
+      "id": 10,
+      "logoUrl": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/cle.png&scale=crop&cquality=40&location=origin&w=80&h=80",
+      "lose": 4,
+      "win": 21
+    },
+    {
+      "id": 11,
+      "logoUrl": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/mil.png&scale=crop&cquality=40&location=origin&w=80&h=80",
+      "lose": 11,
+      "win": 13
+    },
+    {
+      "id": 12,
+      "logoUrl": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/ind.png&scale=crop&cquality=40&location=origin&w=80&h=80",
+      "lose": 15,
+      "win": 10
+    },
+    {
+      "id": 13,
+      "logoUrl": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/chi.png&scale=crop&cquality=40&location=origin&w=80&h=80",
+      "lose": 15,
+      "win": 10
+    },
+    {
+      "id": 14,
+      "logoUrl": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/det.png&scale=crop&cquality=40&location=origin&w=80&h=80",
+      "lose": 15,
+      "win": 10
+    },
+    {
+      "id": 15,
+      "logoUrl": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/orl.png&scale=crop&cquality=40&location=origin&w=80&h=80",
+      "lose": 10,
+      "win": 17
+    },
+    {
+      "id": 16,
+      "logoUrl": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/mia.png&scale=crop&cquality=40&location=origin&w=80&h=80",
+      "lose": 10,
+      "win": 12
+    },
+    {
+      "id": 17,
+      "logoUrl": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/atl.png&scale=crop&cquality=40&location=origin&w=80&h=80",
+      "lose": 12,
+      "win": 14
+    },
+    {
+      "id": 18,
+      "logoUrl": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/cha.png&scale=crop&cquality=40&location=origin&w=80&h=80",
+      "lose": 17,
+      "win": 7
+    },
+    {
+      "id": 19,
+      "logoUrl": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/wsh.png&scale=crop&cquality=40&location=origin&w=80&h=80",
+      "lose": 19,
+      "win": 3
+    },
+    {
+      "id": 20,
+      "logoUrl": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/okc.png&scale=crop&cquality=40&location=origin&w=80&h=80",
+      "lose": 5,
+      "win": 19
+    },
+    {
+      "id": 21,
+      "logoUrl": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/den.png&scale=crop&cquality=40&location=origin&w=80&h=80",
+      "lose": 10,
+      "win": 12
+    },
+    {
+      "id": 22,
+      "logoUrl": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/min.png&scale=crop&cquality=40&location=origin&w=80&h=80",
+      "lose": 11,
+      "win": 12
+    },
+    {
+      "id": 23,
+      "logoUrl": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/por.png&scale=crop&cquality=40&location=origin&w=80&h=80",
+      "lose": 16,
+      "win": 8
+    },
+    {
+      "id": 24,
+      "logoUrl": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/utah.png&scale=crop&cquality=40&location=origin&w=80&h=80",
+      "lose": 18,
+      "win": 5
+    },
+    {
+      "id": 25,
+      "logoUrl": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/hou.png&scale=crop&cquality=40&location=origin&w=80&h=80",
+      "lose": 8,
+      "win": 17
+    },
+    {
+      "id": 26,
+      "logoUrl": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/mem.png&scale=crop&cquality=40&location=origin&w=80&h=80",
+      "lose": 8,
+      "win": 17
+    },
+    {
+      "id": 27,
+      "logoUrl": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/dal.png&scale=crop&cquality=40&location=origin&w=80&h=80",
+      "lose": 9,
+      "win": 16
+    },
+    {
+      "id": 28,
+      "logoUrl": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/sa.png&scale=crop&cquality=40&location=origin&w=80&h=80",
+      "lose": 12,
+      "win": 12
+    },
+    {
+      "id": 29,
+      "logoUrl": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/no.png&scale=crop&cquality=40&location=origin&w=80&h=80",
+      "lose": 20,
+      "win": 5
+    }
+  ],
+  "totalPolls": [
+    {
+      "awayTeamVoteNumber": 10,
+      "homeTeamVoteNumber": 59,
+      "id": 0,
+      "matchId": 0,
+      "totalPoint": 223.5
+    },
+    {
+      "awayTeamVoteNumber": 0,
+      "homeTeamVoteNumber": 0,
+      "id": 1,
+      "matchId": 1,
+      "totalPoint": 215
+    },
+    {
+      "awayTeamVoteNumber": 20,
+      "homeTeamVoteNumber": 65,
+      "id": 2,
+      "matchId": 2,
+      "totalPoint": 230
+    },
+    {
+      "awayTeamVoteNumber": 5,
+      "homeTeamVoteNumber": 6,
+      "id": 3,
+      "matchId": 3,
+      "totalPoint": 226
+    },
+    {
+      "awayTeamVoteNumber": 7,
+      "homeTeamVoteNumber": 8,
+      "id": 4,
+      "matchId": 4,
+      "totalPoint": 225.5
+    }
+  ]
+}

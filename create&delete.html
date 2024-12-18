@@ -108,7 +108,7 @@
         const apiBaseUrl = "https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/matches";
 
         // 1. 取得比賽資料
-        function fetchMatches() {
+        function getMatches() {
             fetch(apiBaseUrl)
                 .then(response => response.json())
                 .then(data => {
@@ -213,7 +213,7 @@
         });
 
         // 初始化 - 加載比賽資料
-        fetchMatches();
+        getMatches();
 
 
     </script>
