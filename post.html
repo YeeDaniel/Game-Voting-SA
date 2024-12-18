@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,10 +23,6 @@
     .info-container {
       margin-top: 20px;
       width: 80%;
-    }
-
-    .card {
-      background-color: #fafafa;
     }
 
     .info-text {
@@ -106,16 +103,13 @@
             請選擇主隊名稱
           </button>
           <ul id="homeTeamDropdown" class="dropdown-menu custom-dropdown"></ul>
-
         </div>
       </div>
     </div>
     <div id="teamInfo" class="d-flex justify-content-between mt-3">
-
       <div id="awayTeamInfo" style="flex: 0 0 48%;"></div> <!-- 客隊資訊 -->
       <div id="homeTeamInfo" style="flex: 0 0 48%;"></div> <!-- 主隊資訊-->
     </div>
-
     <div class="mt-4 ">
       <div class="form-group">
         <label for="meeting-time" class="form-label">選擇比賽日期和時間:</label>
@@ -123,44 +117,45 @@
       </div>
     </div>
   </div>
-  
 
 
-    <!-- Total Point -->
-    <div class="container mt-5">
-  <div class="row justify-content-between">
-    <div class="col-5 text-center">
-      <div class="input-group">
-        <label for="totalPointInput" class="input-group-text">Total Point</label>
-        <input type="number" class="form-control" id="totalPointInput" placeholder="輸入總得分">
+
+  <!-- Total Point -->
+  <div class="container mt-5">
+    <div class="row justify-content-between">
+      <div class="col-5 text-center">
+        <div class="input-group">
+          <label for="totalPointInput" class="input-group-text">Total Point</label>
+          <input type="number" class="form-control" id="totalPointInput" placeholder="輸入總得分">
+        </div>
       </div>
-    </div>
-    <!-- Spread Poll -->
-    <div class="col-5 text-center">
-      <div class="input-group">
-        <label for="spreadPollInput" class="input-group-text">Spread Poll</label>
-        <input type="number" class="form-control" id="spreadPollInput" placeholder="輸入分差">
+      <!-- Spread Poll -->
+      <div class="col-5 text-center">
+        <div class="input-group">
+          <label for="spreadPollInput" class="input-group-text">Spread Poll</label>
+          <input type="number" class="form-control" id="spreadPollInput" placeholder="輸入讓分">
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-    <form id="voteForm">
-      <div class="container h-100">
-        <div class="row justify-content-center mt-5" style="height: 50vh;">
-          <div class="col-auto">
-            <div class="d-flex justify-content-center">
-              <input type="submit" class="btn shadow border btn-hover-effect"
-                style="background-color: rgb(127, 212, 70);" value="確認">
-              <a href="create&delete.html" class="btn btn-hover-effect" type="button"
-                style="background-color: transparent; color:grey">
-                <span style="font-size: smaller;">取 消</span>
-              </a>
-            </div>
+  <form id="voteForm">
+    <div class="container h-100">
+      <div class="row justify-content-center mt-5" style="height: 50vh;">
+        <div class="col-auto">
+          <div class="d-flex justify-content-center">
+            <input type="submit" class="btn shadow border btn-hover-effect" style="background-color: rgb(127, 212, 70);"
+              value="確認">
+            <a href="create&delete.html" class="btn btn-hover-effect" type="button"
+              style="background-color: transparent; color:grey">
+              <span style="font-size: smaller;">取 消</span>
+            </a>
           </div>
         </div>
       </div>
-    </form>   
+    </div>
+  </form>
 </body>
 <script src="post.js"></script>
+
 </html>
