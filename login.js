@@ -48,7 +48,7 @@ function updateButtonToLogout() {
     }
 }
 
-// 取消按鈕绑定
+// 取消按鈕
 document.getElementById('cancelButton')?.addEventListener('click', function () {
     window.location.href = 'hotGames.html';
 });

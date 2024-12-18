@@ -277,7 +277,7 @@ async function submitFormData() {
             }
         }
 
-        // 获取用户输入的 spread 值
+        // 獲取用戶輸入的 spread 值
         const spreadInput = document.getElementById("spreadPollInput").value;
         const spread = parseFloat(spreadInput); 
         if (isNaN(spread)) {
