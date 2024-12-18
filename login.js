@@ -1,11 +1,11 @@
-// 初始化檢查login狀態
+
 window.addEventListener('load', function () {
     const storedUserId = getCookie('userId');
     if (storedUserId) {
         updateButtonToLogout();
     }
 });
-// 登入邏輯
+
 document.getElementById('loginForm')?.addEventListener('submit', async function (event) {
     event.preventDefault();
     const username = document.getElementById('username')?.value.trim();
@@ -79,7 +79,3 @@ function getCookie(name) {
 function deleteCookie(name) {
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
 }
-
-
-
-
