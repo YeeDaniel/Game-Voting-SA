@@ -1,4 +1,3 @@
-
 window.addEventListener('load', function () {
     const storedUserId = getCookie('userId');
     if (storedUserId) {
@@ -22,14 +21,10 @@ document.getElementById('loginForm')?.addEventListener('submit', async function 
 
         if (response.ok) {
             const data = await response.json();
-            if (data?.id) {
                 setCookie('userId', data.id, 1); // 存用户 ID
                 alert(`登入成功！\n使用者 ID: ${data.id}\n使用者名稱: ${data.name}`);
                 updateButtonToLogout();
                 window.location.href = 'hotGames.html'; 
-            } else {
-                errorMessage.textContent = '該使用者不存在，請重新輸入！';
-            }
         } else {
             errorMessage.textContent = '該使用者不存在，請重新輸入！';
         }
@@ -52,7 +47,7 @@ function updateButtonToLogout() {
     }
 }
 
-// 取消按鈕绑定
+// 取消按鈕
 document.getElementById('cancelButton')?.addEventListener('click', function () {
     window.location.href = 'hotGames.html';
 });
