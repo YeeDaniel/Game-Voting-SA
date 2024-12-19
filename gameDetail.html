@@ -76,7 +76,6 @@
                 <p id="totalPoints" class="fw-bolder mb-0">Total points 224.5</p>
                 <button class="btn btn-primary ms-auto" id="totalPollsConfirm" onclick="submitTotalPointsVote(AppData.totalPollOption)">Confirm Vote</button>
               </span>
-              
             </h5>
             <p class="card-text fw-bolder">
               <div class="btn-group d-flex justify-content-between w-100" role="group">
@@ -98,7 +97,7 @@
                   </button>
                 </div>
                 <div class="col d-flex justify-content-end">
-                  <button class="btn d-flex" data-bs-toggle="modal" data-bs-target="#TotalPointsPollModal" style="border: none;">
+                  <button class="btn d-flex" data-bs-toggle="modal" data-bs-target="#gameCommentModal" style="border: none;">
                     <i class="bi bi-chat"></i>
                     <p class=" mx-1">7</p>
                   </button>
@@ -137,7 +136,7 @@
                         </button>
                       </div>
                       <div class="col d-flex justify-content-end">
-                        <button class="btn d-flex" data-bs-toggle="modal" data-bs-target="#TotalPointsPollModal" style="border: none;">
+                        <button class="btn d-flex" data-bs-toggle="modal" data-bs-target="#gameCommentModal" style="border: none;">
                           <i class="bi bi-chat"></i>
                           <p class=" mx-1">7</p>
                         </button>
@@ -290,380 +289,6 @@
                                         </div>
                                       </div>
                                     </div>
-                                    <div class="d-flex flex-start mt-4">
-                                      <a class="me-3" href="#">
-                                        <img class="rounded-circle shadow-1-strong"
-                                          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(32).webp" alt="avatar"
-                                          width="65" height="65" />
-                                      </a>
-                                      <div class="flex-grow-1 flex-shrink-1">
-                                        <div>
-                                          <div class="d-flex justify-content-between align-items-center">
-                                            <p class="mb-1">
-                                              John Smith <span class="small">- 6 hours ago</span>
-                                            </p>
-                                          </div>
-                                          <p class="small mb-0">
-                                            Autem, totam debitis suscipit saepe sapiente magnam officiis
-                                            quaerat necessitatibus odio assumenda, perferendis quae iusto
-                                            labore laboriosam minima numquam impedit quam dolorem!
-                                          </p>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-              </section>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Understood</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal fade" id="TotalPointsPollModal" tabindex="-1" aria-labelledby="TotalPointsPollModalModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="TotalPointsPollModal">Comments</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <section id="TotalPointsPollComments">
-                <section class="gradient-custom">
-                  <div class="container">
-                    <div class="row d-flex justify-content-center">
-                      <div class="col-md-12 col-lg-10 col-xl-8">
-                        <div class="card">
-                          <div class="card-body p-4">
-                            <h4 class="text-center mb-4 pb-2">Over/Under poll comments</h4>
-      
-                            <div class="row">
-                              <div class="col">
-                                <div class="d-flex flex-start">
-                                  <img class="rounded-circle shadow-1-strong me-3"
-                                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp" alt="avatar" width="65"
-                                    height="65" />
-                                  <div class="flex-grow-1 flex-shrink-1">
-                                    <div>
-                                      <div class="d-flex justify-content-between align-items-center">
-                                        <p class="mb-1">
-                                          Maria Smantha <span class="small">- 2 hours ago</span>
-                                        </p>
-                                        <a href="#!"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
-                                          <path d="M5.921 11.9 1.353 8.62a.72.72 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z"/>
-                                        </svg>reply</a>
-                                      </div>
-                                      <p class="small mb-0">
-                                        It is a long established fact that a reader will be distracted by
-                                        the readable content of a page.
-                                      </p>
-                                    </div>
-                
-                                    <div class="d-flex flex-start mt-4">
-                                      <a class="me-3" href="#">
-                                        <img class="rounded-circle shadow-1-strong"
-                                          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(11).webp" alt="avatar"
-                                          width="65" height="65" />
-                                      </a>
-                                      <div class="flex-grow-1 flex-shrink-1">
-                                        <div>
-                                          <div class="d-flex justify-content-between align-items-center">
-                                            <p class="mb-1">
-                                              Simona Disa <span class="small">- 3 hours ago</span>
-                                            </p>
-                                          </div>
-                                          <p class="small mb-0">
-                                            letters, as opposed to using 'Content here, content here',
-                                            making it look like readable English.
-                                          </p>
-                                        </div>
-                                      </div>
-                                    </div>
-                
-                                    <div class="d-flex flex-start mt-4">
-                                      <a class="me-3" href="#">
-                                        <img class="rounded-circle shadow-1-strong"
-                                          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(32).webp" alt="avatar"
-                                          width="65" height="65" />
-                                      </a>
-                                      <div class="flex-grow-1 flex-shrink-1">
-                                        <div>
-                                          <div class="d-flex justify-content-between align-items-center">
-                                            <p class="mb-1">
-                                              John Smith <span class="small">- 4 hours ago</span>
-                                            </p>
-                                          </div>
-                                          <p class="small mb-0">
-                                            the majority have suffered alteration in some form, by
-                                            injected humour, or randomised words.
-                                          </p>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                
-                                <div class="d-flex flex-start mt-4">
-                                  <img class="rounded-circle shadow-1-strong me-3"
-                                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(12).webp" alt="avatar" width="65"
-                                    height="65" />
-                                  <div class="flex-grow-1 flex-shrink-1">
-                                    <div>
-                                      <div class="d-flex justify-content-between align-items-center">
-                                        <p class="mb-1">
-                                          Natalie Smith <span class="small">- 2 hours ago</span>
-                                        </p>
-                                        <a href="#!"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
-                                          <path d="M5.921 11.9 1.353 8.62a.72.72 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z"/>
-                                        </svg>reply</a>
-                                      </div>
-                                      <p class="small mb-0">
-                                        The standard chunk of Lorem Ipsum used since the 1500s is
-                                        reproduced below for those interested. Sections 1.10.32 and
-                                        1.10.33.
-                                      </p>
-                                    </div>
-                
-                                    <div class="d-flex flex-start mt-4">
-                                      <a class="me-3" href="#">
-                                        <img class="rounded-circle shadow-1-strong"
-                                          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(31).webp" alt="avatar"
-                                          width="65" height="65" />
-                                      </a>
-                                      <div class="flex-grow-1 flex-shrink-1">
-                                        <div>
-                                          <div class="d-flex justify-content-between align-items-center">
-                                            <p class="mb-1">
-                                              Lisa Cudrow <span class="small">- 4 hours ago</span>
-                                            </p>
-                                          </div>
-                                          <p class="small mb-0">
-                                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-                                            scelerisque ante sollicitudin commodo. Cras purus odio,
-                                            vestibulum in vulputate at, tempus viverra turpis.
-                                          </p>
-                                        </div>
-                                      </div>
-                                    </div>
-                
-                                    <div class="d-flex flex-start mt-4">
-                                      <a class="me-3" href="#">
-                                        <img class="rounded-circle shadow-1-strong"
-                                          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(29).webp" alt="avatar"
-                                          width="65" height="65" />
-                                      </a>
-                                      <div class="flex-grow-1 flex-shrink-1">
-                                        <div>
-                                          <div class="d-flex justify-content-between align-items-center">
-                                            <p class="mb-1">
-                                              Maggie McLoan <span class="small">- 5 hours ago</span>
-                                            </p>
-                                          </div>
-                                          <p class="small mb-0">
-                                            a Latin professor at Hampden-Sydney College in Virginia,
-                                            looked up one of the more obscure Latin words, consectetur
-                                          </p>
-                                        </div>
-                                      </div>
-                                    </div>
-                
-                                    <div class="d-flex flex-start mt-4">
-                                      <a class="me-3" href="#">
-                                        <img class="rounded-circle shadow-1-strong"
-                                          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(32).webp" alt="avatar"
-                                          width="65" height="65" />
-                                      </a>
-                                      <div class="flex-grow-1 flex-shrink-1">
-                                        <div>
-                                          <div class="d-flex justify-content-between align-items-center">
-                                            <p class="mb-1">
-                                              John Smith <span class="small">- 6 hours ago</span>
-                                            </p>
-                                          </div>
-                                          <p class="small mb-0">
-                                            Autem, totam debitis suscipit saepe sapiente magnam officiis
-                                            quaerat necessitatibus odio assumenda, perferendis quae iusto
-                                            labore laboriosam minima numquam impedit quam dolorem!
-                                          </p>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-              </section>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Understood</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal fade" id="spreadPollModal" tabindex="-1" aria-labelledby="spreadPollModalModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="spreadPollModal">Comments</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <section id="spreadPollComments">
-                <section class="gradient-custom">
-                  <div class="container">
-                    <div class="row d-flex justify-content-center">
-                      <div class="col-md-12 col-lg-10 col-xl-8">
-                        <div class="card">
-                          <div class="card-body p-4">
-                            <h4 class="text-center mb-4 pb-2">Spread comments</h4>
-      
-                            <div class="row">
-                              <div class="col">
-                                <div class="d-flex flex-start">
-                                  <img class="rounded-circle shadow-1-strong me-3"
-                                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp" alt="avatar" width="65"
-                                    height="65" />
-                                  <div class="flex-grow-1 flex-shrink-1">
-                                    <div>
-                                      <div class="d-flex justify-content-between align-items-center">
-                                        <p class="mb-1">
-                                          Maria Smantha <span class="small">- 2 hours ago</span>
-                                        </p>
-                                        <a href="#!"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
-                                          <path d="M5.921 11.9 1.353 8.62a.72.72 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z"/>
-                                        </svg>reply</a>
-                                      </div>
-                                      <p class="small mb-0">
-                                        It is a long established fact that a reader will be distracted by
-                                        the readable content of a page.
-                                      </p>
-                                    </div>
-                
-                                    <div class="d-flex flex-start mt-4">
-                                      <a class="me-3" href="#">
-                                        <img class="rounded-circle shadow-1-strong"
-                                          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(11).webp" alt="avatar"
-                                          width="65" height="65" />
-                                      </a>
-                                      <div class="flex-grow-1 flex-shrink-1">
-                                        <div>
-                                          <div class="d-flex justify-content-between align-items-center">
-                                            <p class="mb-1">
-                                              Simona Disa <span class="small">- 3 hours ago</span>
-                                            </p>
-                                          </div>
-                                          <p class="small mb-0">
-                                            letters, as opposed to using 'Content here, content here',
-                                            making it look like readable English.
-                                          </p>
-                                        </div>
-                                      </div>
-                                    </div>
-                
-                                    <div class="d-flex flex-start mt-4">
-                                      <a class="me-3" href="#">
-                                        <img class="rounded-circle shadow-1-strong"
-                                          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(32).webp" alt="avatar"
-                                          width="65" height="65" />
-                                      </a>
-                                      <div class="flex-grow-1 flex-shrink-1">
-                                        <div>
-                                          <div class="d-flex justify-content-between align-items-center">
-                                            <p class="mb-1">
-                                              John Smith <span class="small">- 4 hours ago</span>
-                                            </p>
-                                          </div>
-                                          <p class="small mb-0">
-                                            the majority have suffered alteration in some form, by
-                                            injected humour, or randomised words.
-                                          </p>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                
-                                <div class="d-flex flex-start mt-4">
-                                  <img class="rounded-circle shadow-1-strong me-3"
-                                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(12).webp" alt="avatar" width="65"
-                                    height="65" />
-                                  <div class="flex-grow-1 flex-shrink-1">
-                                    <div>
-                                      <div class="d-flex justify-content-between align-items-center">
-                                        <p class="mb-1">
-                                          Natalie Smith <span class="small">- 2 hours ago</span>
-                                        </p>
-                                        <a href="#!"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
-                                          <path d="M5.921 11.9 1.353 8.62a.72.72 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z"/>
-                                        </svg>reply</a>
-                                      </div>
-                                      <p class="small mb-0">
-                                        The standard chunk of Lorem Ipsum used since the 1500s is
-                                        reproduced below for those interested. Sections 1.10.32 and
-                                        1.10.33.
-                                      </p>
-                                    </div>
-                
-                                    <div class="d-flex flex-start mt-4">
-                                      <a class="me-3" href="#">
-                                        <img class="rounded-circle shadow-1-strong"
-                                          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(31).webp" alt="avatar"
-                                          width="65" height="65" />
-                                      </a>
-                                      <div class="flex-grow-1 flex-shrink-1">
-                                        <div>
-                                          <div class="d-flex justify-content-between align-items-center">
-                                            <p class="mb-1">
-                                              Lisa Cudrow <span class="small">- 4 hours ago</span>
-                                            </p>
-                                          </div>
-                                          <p class="small mb-0">
-                                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-                                            scelerisque ante sollicitudin commodo. Cras purus odio,
-                                            vestibulum in vulputate at, tempus viverra turpis.
-                                          </p>
-                                        </div>
-                                      </div>
-                                    </div>
-                
-                                    <div class="d-flex flex-start mt-4">
-                                      <a class="me-3" href="#">
-                                        <img class="rounded-circle shadow-1-strong"
-                                          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(29).webp" alt="avatar"
-                                          width="65" height="65" />
-                                      </a>
-                                      <div class="flex-grow-1 flex-shrink-1">
-                                        <div>
-                                          <div class="d-flex justify-content-between align-items-center">
-                                            <p class="mb-1">
-                                              Maggie McLoan <span class="small">- 5 hours ago</span>
-                                            </p>
-                                          </div>
-                                          <p class="small mb-0">
-                                            a Latin professor at Hampden-Sydney College in Virginia,
-                                            looked up one of the more obscure Latin words, consectetur
-                                          </p>
-                                        </div>
-                                      </div>
-                                    </div>
-                
                                     <div class="d-flex flex-start mt-4">
                                       <a class="me-3" href="#">
                                         <img class="rounded-circle shadow-1-strong"
@@ -926,7 +551,6 @@
           }
         }
       }
-    
       function submitSpreadVote(option) {
         console.log('option',option);
         if (!spreadCurrentVote) {
@@ -944,10 +568,6 @@
           headers: {
             'Content-Type': 'application/json',
           },
-          /*body: JSON.stringify({
-            matchId: AppData.matchId,
-            voterIds: [userId]
-          }),*/
         })
           .then((response) => {
             if (!response.ok) throw new Error('投票失敗');
@@ -966,7 +586,6 @@
             homeButton.disabled = true;
             awayButton.disabled = true;
           });
-    
         console.log(`Vote submitted: ${spreadCurrentVote}`);
       }
     </script>    
@@ -979,7 +598,6 @@
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-
         const data = await response.json();
         console.log("Fetched data:", data);
 
@@ -993,9 +611,7 @@
             document.getElementById("awayTeamName").textContent = match.awayTeam;
 
             document.getElementById("matchTime").textContent = new Date(match.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-
             AppData.expirationTime = match.date;
-            
             document.getElementById("statusText").textContent = match.status;
             document.getElementById("commentCount").textContent = match.comments;
 
@@ -1010,9 +626,6 @@
     }
 }
     fetchMatchData();
-
-
-
     </script>
     <!-- get spread data-->
     <script>
@@ -1037,14 +650,11 @@
             alert('Failed to load match data.');
           }
       }
-  
-      // 初始化
       fetchSpreadData();
     </script>
     <!-- over/under poll功能 + data -->
     <script>
       let voteSelection = null;
-
       // Fetch data from API
       async function fetchTotalPointsData() {
         try {
@@ -1117,10 +727,6 @@
           headers: {
             'Content-Type': 'application/json',
           },
-          /*body: JSON.stringify({
-            matchId: AppData.matchId,
-            voterIds: [4]
-          }),*/
         })
          .then(response => {
             if (!response.ok) throw new Error('投票失敗');
@@ -1162,23 +768,18 @@
           return;
         }
 
-        // 計算剩餘時間的時、分、秒
         const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24)); // 天數
         const hours = Math.floor(timeDiff % (1000 * 60 * 60 * 24)/ (1000 * 60 * 60));
         const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
 
-        // 更新前端顯示
         document.getElementById("spreadClose").textContent =
           `${days} 天 ${hours} 小時 ${minutes} 分 ${seconds} 秒`;
         document.getElementById("totalClose").textContent =
           `${days} 天 ${hours} 小時 ${minutes} 分 ${seconds} 秒`;
       }
-
       // 每秒更新一次倒數計時
       const timer = setInterval(updateTimeRemaining, 1000);
-
-      // 初始化顯示
       updateTimeRemaining();
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
