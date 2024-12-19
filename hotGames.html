@@ -1,169 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>熱門賽事</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <!--import bootstrap icons-->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-            crossorigin="anonymous"></script>
-    
-    
-        <!-- 引入 SweetAlert 的 css -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.20/dist/sweetalert2.min.css">
-    
-        <!-- 引入 SweetAlert 的 JavaScript -->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.20/dist/sweetalert2.all.min.js"></script>
-        
-        <style>
-            body {
-                background-color: rgba(250, 240, 216, 0.5);
-                /* 背景顏色 */
-            }
-    
-            .card {
-                background-color: #D8D9FA;
-                /* 卡片背景色 */
-                border-radius: 10px;
-                /* 圓角 */
-                padding: 20px;
-                margin-bottom: 20px;
-            }
-    
-            .team-logo {
-                width: 50px;
-                height: 50px;
-            }
-    
-            .team-info {
-                font-size: 14px;
-                line-height: 1.2;
-            }
-    
-            .time-info {
-                font-size: 18px;
-                font-weight: bold;
-            }
-    
-            .comments {
-                font-size: 12px;
-                color: gray;
-            }
-        </style>
-        <script>
-    
-            //彈出錯誤視窗，SweetAlert2 參考 https://ithelp.ithome.com.tw/articles/10318757?sc=rss.iron
-            window.onload = function () {
-                var errorMessage = new URLSearchParams(window.location.search).get('error');
-                if (errorMessage) {
-                    Swal.fire({
-                        icon: 'warning',
-                        title: '注意！',
-                        text: decodeURIComponent(errorMessage),
-                    });
-                }
-            };
-    
-    
-        </script>
-    
-    
-    </head>
-    
-    <body>
-        <!--navbar start-->
-    
-        <ul class="nav nav-underline justify-content-around" style="background-color: #FAEFD6;">
-            
-            <li class="nav-item">
-                <a class="nav-link text-dark " href="hotGames.html">熱門賽事</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" href="">國際足球</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" href="">NBA</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" href="">MLB</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" href="">國際棒球</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" href="">個人</a>
-            </li>
-        </ul>
-    
-        <script>
-            // 獲取當前頁面的路徑
-            const currentUrl = window.location.pathname.split('/').pop();
-    
-            // 選取所有導航連結
-            const navLinks = document.querySelectorAll('.nav-link');
-    
-            // 遍歷連結，對應當前頁面設定樣式
-            navLinks.forEach(link => {
-                if (link.getAttribute('href') === currentUrl) {
-                    link.classList.add('fw-bold'); // 加入 Bootstrap 樣式
-                    link.setAttribute('aria-current', 'page'); // 設定 ARIA 標示
-                }
-            });
-        </script>
-<body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>熱門賽事</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="login.js"></script>
+    <style>
+        body {
+            background-color: rgba(250, 240, 216, 0.5);
+            /* 背景顏色 */
+        }
 
-    <div class="container-fluid min-vh-100 d-flex flex-column align-items-center" style="max-width: 800px; background-color: #FAE1D8;">
-        <button class="card mt-3  border-0 d-flex flex-column align-items-center justify-content-center shadow"
-            style="width: 90%; max-width: 1000px; background-color: #F3EAFD; cursor: pointer;"
-            onclick="window.location.href='post.html';">
-            <div class="d-flex align-items-center justify-content-between w-100">
+        .card {
+            background-color: #D8D9FA;
+            /* 卡片背景色 */
+            border-radius: 10px;
+            /* 圓角 */
+            padding: 20px;
+            margin-bottom: 20px;
+        }
 
-                <!-- 左邊球隊Logo和資訊 -->
-                <div class="d-flex align-items-center d-flex justify-content-center">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/c/c2/Minnesota_Timberwolves_logo.svg"
-                        alt="Wolves Logo" class="team-logo me-3">
-                    <div class="team-info">
-                        <div>8-7</div>
-                        <div>Wolves</div>
-                    </div>
-                </div>
-                <!-- 中間時間和比賽資訊 -->
-                <div class="flex-grow-1 text-center ">
-                    <div class="time-info">4:30 AM</div>
-                    <div>BOS by 8.0</div>
-                </div>
-                <!-- 右邊球隊Logo和資訊 -->
-                <div class="d-flex align-items-center">
-                    <div class="team-info text-end me-3">
-                        <div>13-3</div>
-                        <div>Celtics</div>
-                    </div>
-                    <img src="https://upload.wikimedia.org/wikipedia/en/8/8f/Boston_Celtics.svg" alt="Celtics Logo"
-                        class="team-logo">
-                </div>
-            </div>
-            <!-- 卡片底部文字與互動 -->
-            <div class="mt-3 w-100 text-start">
-                <p class="mb-2">綠色三分雨！布朗單場7記三分 塞爾提克笑擁5連勝</p>
-                <div class="d-flex align-items-center">
-                    <span class="comments me-2">
-                        <i class="bi bi-chat-dots"></i> 341
-                    </span>
-                </div>
-            </div>
-        </button>
-        <div id="matches-container" class="w-100 min-vh-100 d-flex flex-column align-items-center"></div>
-    </div>
+        .team-logo {
+            width: 50px;
+            height: 50px;
+        }
 
+        .team-info {
+            font-size: 14px;
+            line-height: 1.2;
+        }
+
+        .time-info {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .comments {
+            font-size: 12px;
+            color: gray;
+        }
+
+        .btn-hover-effect {
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .btn-hover-effect:hover {
+            transform: scale(1.1);
+        }
+    </style>
     <script>
-        // 使用 fetch 获取 JSON 数据
-        fetch('https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/matches') // 替换为你的实际 API 地址
+
+        const currentUrl = window.location.pathname.split('/').pop();
+
+        // 選取所有導航連結
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        // 遍歷連結，對應當前頁面設定樣式
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentUrl) {
+                link.classList.add('fw-bold'); // 加入 Bootstrap 樣式
+                link.setAttribute('aria-current', 'page'); // 設定 ARIA 標示
+            }
+        });
+        // 使用 fetch 獲取 JSON 數據
+        fetch('https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/matches') 
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok ' + response.statusText);
@@ -171,10 +79,11 @@
                 return response.json();
             })
             .then(data => {
-                // 获取容器
+                // 獲取容器
+                data.sort((a, b) => b.id - a.id);
                 const container = document.getElementById('matches-container');
 
-                // 遍历 JSON 数据生成卡片
+
                 data.forEach(match => {
                     const card = document.createElement('button');
                     card.className = 'card mt-3 border-0 d-flex flex-column align-items-center justify-content-center shadow';
@@ -182,39 +91,35 @@
                     card.onclick = () => window.location.href = `post.html?id=${match.id}`;
 
                     card.innerHTML = `
-                        <div class="d-flex align-items-center justify-content-between w-100">
-                            <!-- 左边球队Logo和信息 -->
-                            <div class="d-flex align-items-center d-flex justify-content-center">
-                                <img src="${match.awayTeamLogoUrl}" alt="${match.awayTeam} Logo" class="team-logo me-3">
-                                <div class="team-info">
-                                    <div>${match.awayTeamLose}-${match.homeTeamWin}</div>
-                                    <div>${match.awayTeam}</div>
+                            <div class="d-flex align-items-center justify-content-between w-100">
+                                <div class="d-flex align-items-center d-flex justify-content-center">
+                                    <img src="${match.awayTeamLogoUrl}" alt="${match.awayTeam} Logo" class="team-logo me-3">
+                                    <div class="team-info">
+                                        <div>${match.awayTeamLose}-${match.homeTeamWin}</div>
+                                        <div>${match.awayTeam}</div>
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1 text-center">
+                                    <div class="time-info">${new Date(match.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</div>
+                                    <div>${match.status === 'onGoing' ? 'Ongoing' : 'Upcoming'}</div>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <div class="team-info text-end me-3">
+                                        <div>${match.homeTeamWin}-${match.homeTeamLose}</div>
+                                        <div>${match.homeTeam}</div>
+                                    </div>
+                                    <img src="${match.homeTeamLogoUrl}" alt="${match.homeTeam} Logo" class="team-logo">
                                 </div>
                             </div>
-                            <!-- 中间时间和比赛信息 -->
-                            <div class="flex-grow-1 text-center">
-                                <div class="time-info">${new Date(match.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</div>
-                                <div>${match.status === 'onGoing' ? 'Ongoing' : 'Upcoming'}</div>
-                            </div>
-                            <!-- 右边球队Logo和信息 -->
-                            <div class="d-flex align-items-center">
-                                <div class="team-info text-end me-3">
-                                    <div>${match.homeTeamWin}-${match.homeTeamLose}</div>
-                                    <div>${match.homeTeam}</div>
+                            <div class="mt-3 w-100 text-start">
+                                <p class="mb-2">比賽正在進行：${match.awayTeam} 對 ${match.homeTeam}</p>
+                                <div class="d-flex align-items-center">
+                                    <span class="comments me-2">
+                                        <i class="bi bi-chat-dots"></i> ${match.comments}
+                                    </span>
                                 </div>
-                                <img src="${match.homeTeamLogoUrl}" alt="${match.homeTeam} Logo" class="team-logo">
                             </div>
-                        </div>
-                        <!-- 卡片底部文字与互动 -->
-                        <div class="mt-3 w-100 text-start">
-                            <p class="mb-2">比賽正在進行：${match.awayTeam} 對 ${match.homeTeam}</p>
-                            <div class="d-flex align-items-center">
-                                <span class="comments me-2">
-                                    <i class="bi bi-chat-dots"></i> ${match.comments}
-                                </span>
-                            </div>
-                        </div>
-                    `;
+                        `;
 
                     // 插入卡片到容器
                     container.appendChild(card);
@@ -224,7 +129,48 @@
                 console.error('Error fetching data:', error);
                 const container = document.getElementById('matches-container');
                 container.innerHTML = `<p class="text-danger">無法加載比賽數據。請稍後重試。</p>`;
-            });
+            });   
     </script>
-</body>
+</head>
+
+<body>
+    <!--navbar start-->
+
+    <ul class="nav nav-underline justify-content-around" style="background-color: #FAEFD6;">
+
+        <li class="nav-item">
+            <a class="nav-link text-dark " href="hotGames.html">熱門賽事</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="">國際足球</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="">NBA</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="">MLB</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="">國際棒球</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="profile.html">個人</a>
+        </li>
+        <li class="nav-item">
+            <button id="loginButton" class="btn align-self-center btn-hover-effect" type="submit"
+                onclick="window.location.href='login.html';" style="background-color: rgb(242, 208, 134);">登入</button>
+        </li>
+    </ul>
+    <!--navbar end-->
+
+    <body>
+
+        <div class="container-fluid min-vh-100 d-flex flex-column align-items-center"
+            style="max-width: 800px; background-color: #FAE1D8;">
+            <div id="matches-container" class="w-100 min-vh-100 d-flex flex-column align-items-center"
+                onclick="window.location.href='gameDetail.html';"></div>
+        </div>
+
+    </body>
+
 </html>
