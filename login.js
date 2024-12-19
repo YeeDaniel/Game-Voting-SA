@@ -1,4 +1,3 @@
-
 window.addEventListener('load', function () {
     const storedUserId = getCookie('userId');
     if (storedUserId) {

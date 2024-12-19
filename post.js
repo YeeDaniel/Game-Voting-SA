@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // 格式化
     const formattedNow = taiwanTime.toISOString().slice(0, 16);
 
-    // 获取日期时间输入框
+    // 獲取時間日期輸入框
     const dateTimeInput = document.getElementById('meeting-time');
 
     // 最小值跟台灣時間一樣
@@ -221,8 +221,10 @@ async function submitFormData() {
         const homeTeam = teamData.find(t => t.id === selectedHomeTeamId);
         const awayTeam = teamData.find(t => t.id === selectedAwayTeamId);
         const dateTimeInput = document.getElementById("meeting-time");
-        const selectedDateTime = new Date(dateTimeInput.value).toISOString().replace("T", " ").slice(0, 19);
-
+        const selectedDateTime = new Date(dateTimeInput.value); 
+        const taiwanTime = new Date(selectedDateTime.getTime() + 8 * 60 * 60 * 1000);
+        const formattedDateTime = taiwanTime.toISOString().replace("T", " ").slice(0, 19);
+        
         if (!selectedDateTime) {
             Swal.fire('錯誤', '請選擇日期和時間！', 'error');
             return;
@@ -239,7 +241,7 @@ async function submitFormData() {
             homeTeamWin: homeTeam.win,
             homeTeamLose: homeTeam.lose,
             comments: 0,
-            date: selectedDateTime,
+            date: formattedDateTime,
             status: "onGoing"
         }).toString();
 

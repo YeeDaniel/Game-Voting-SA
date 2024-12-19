@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>熱門賽事</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!--import bootstrap icons-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -73,7 +71,7 @@
             }
         });
         // 使用 fetch 獲取 JSON 數據
-        fetch('https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/matches') // 替换为你的实际 API 地址
+        fetch('https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/matches') 
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok ' + response.statusText);
@@ -163,6 +161,7 @@
                 onclick="window.location.href='login.html';" style="background-color: rgb(242, 208, 134);">登入</button>
         </li>
     </ul>
+    <!--navbar end-->
 
     <body>
 
@@ -171,7 +170,6 @@
             <div id="matches-container" class="w-100 min-vh-100 d-flex flex-column align-items-center"
                 onclick="window.location.href='gameDetail.html';"></div>
         </div>
-
 
     </body>
 
