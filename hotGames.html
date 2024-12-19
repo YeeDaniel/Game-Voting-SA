@@ -85,10 +85,11 @@
 
 
                 data.forEach(match => {
+                    console.log(match.id);
                     const card = document.createElement('button');
                     card.className = 'card mt-3 border-0 d-flex flex-column align-items-center justify-content-center shadow';
                     card.style = 'width: 90%; max-width: 1000px; background-color: #F3EAFD; cursor: pointer;';
-                    card.onclick = () => window.location.href = `post.html?id=${match.id}`;
+                    card.onclick = () => window.location.href = `gameDetail.html?matchId=${match.id}`;
 
                     card.innerHTML = `
                             <div class="d-flex align-items-center justify-content-between w-100">
@@ -168,7 +169,7 @@
         <div class="container-fluid min-vh-100 d-flex flex-column align-items-center"
             style="max-width: 800px; background-color: #FAE1D8;">
             <div id="matches-container" class="w-100 min-vh-100 d-flex flex-column align-items-center"
-                onclick="window.location.href='gameDetail.html';"></div>
+                ></div>
         </div>
 
     </body>
