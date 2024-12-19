@@ -188,16 +188,30 @@ document.addEventListener('DOMContentLoaded', function () {
     dateTimeInput.value = formattedNow;
 });
 
-
+let spread = null;
+let totalPoint = null;
 
 document.getElementById("voteForm").addEventListener("submit", async function (event) {
-    event.preventDefault(); 
+    event.preventDefault();
 
     // 檢查是否選了主隊和客隊
     if (selectedHomeTeamId === null || selectedAwayTeamId === null) {
         Swal.fire('請先選擇主隊及客隊', '', 'warning');
         return;
     }
+    const spreadInput = document.getElementById("spreadPollInput").value;
+    spread = parseFloat(spreadInput);
+    if (isNaN(spread)) {
+        Swal.fire('錯誤', '請輸入有效的 Spread 值！', 'error');
+        return;
+    }
+    const totalPointInput = document.getElementById("totalPointInput").value;
+    totalPoint = parseFloat(totalPointInput);
+    if (isNaN(totalPoint)) {
+        Swal.fire('錯誤', '請輸入有效的 totalPoint 值！', 'error');
+        return;
+    }
+
 
     // 彈出sweetAlert框
     Swal.fire({
@@ -221,10 +235,10 @@ async function submitFormData() {
         const homeTeam = teamData.find(t => t.id === selectedHomeTeamId);
         const awayTeam = teamData.find(t => t.id === selectedAwayTeamId);
         const dateTimeInput = document.getElementById("meeting-time");
-        const selectedDateTime = new Date(dateTimeInput.value); 
+        const selectedDateTime = new Date(dateTimeInput.value);
         const taiwanTime = new Date(selectedDateTime.getTime() + 8 * 60 * 60 * 1000);
         const formattedDateTime = taiwanTime.toISOString().replace("T", " ").slice(0, 19);
-        
+
         if (!selectedDateTime) {
             Swal.fire('錯誤', '請選擇日期和時間！', 'error');
             return;
@@ -278,15 +292,7 @@ async function submitFormData() {
                 return;
             }
         }
-
-        // 獲取用戶輸入的 spread 值
-        const spreadInput = document.getElementById("spreadPollInput").value;
-        const spread = parseFloat(spreadInput); 
-        if (isNaN(spread)) {
-            Swal.fire('錯誤', '請輸入有效的 Spread 值！', 'error');
-            return;
-        }
-
+    
         // 建構 Spread Poll 數據
         const spreadPollParams = new URLSearchParams({
             matchId: matchId,
@@ -314,14 +320,7 @@ async function submitFormData() {
             console.error("Spread Poll submission failed:", errorText);
             Swal.fire('Spread Poll 建立失敗', `錯誤代碼：${spreadPollResponse.status}`, 'error');
         }
-        const totalPointInput = document.getElementById("totalPointInput").value;
-        const totalPoint = parseFloat(totalPointInput); 
-        if (isNaN(totalPoint)) {
-            Swal.fire('錯誤', '請輸入有效的 totalPoint 值！', 'error');
-            return;
-        }
 
-        
         const totalPointParams = new URLSearchParams({
             matchId: matchId,
             totalpoint: totalPoint
@@ -349,14 +348,20 @@ async function submitFormData() {
             Swal.fire('Total Poll 建立失敗', `錯誤代碼：${totalPointResponse.status}`, 'error');
         }
 
-    } 
+    }
     catch (error) {
         console.error("發生錯誤:", error);
         Swal.fire('建立失敗', '無法建立資料，請稍後再試。', 'error');
     }
 
-    } 
+}
 
+    const totalPointInput = document.getElementById("totalPointInput");
 
+    totalPointInput.addEventListener("input", function () {
+        if (this.value < 0) {
+        this.value = 0;
+        }
+    });
 
 
