@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>??±È??Ë≥Ω‰??</title>
+        <title>??ÍπÅ??ËòäÏç∞??</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <!--import bootstrap icons-->
@@ -13,25 +13,26 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
+      <script src="login.js"></script>
     
     
-        <!-- Âº???? SweetAlert ??? css -->
+        <!-- Ô•π???? SweetAlert ??? css -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.20/dist/sweetalert2.min.css">
     
-        <!-- Âº???? SweetAlert ??? JavaScript -->
+        <!-- Ô•π???? SweetAlert ??? JavaScript -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.20/dist/sweetalert2.all.min.js"></script>
         
         <style>
             body {
                 background-color: rgba(250, 240, 216, 0.5);
-                /* ?????ØÈ????? */
+                /* ?????ÔøΩ????? */
             }
     
             .card {
                 background-color: #D8D9FA;
-                /* ??°Á???????ØË?? */
+                /* ??‚Üê???????ÔøΩ?? */
                 border-radius: 10px;
-                /* ???Ëß? */
+                /* ???È∞≤? */
                 padding: 20px;
                 margin-bottom: 20px;
             }
@@ -58,13 +59,13 @@
         </style>
         <script>
     
-            //ÂΩ???∫È?ØË™§Ë¶?Á™?Ôº?SweetAlert2 ?????? https://ithelp.ithome.com.tw/articles/10318757?sc=rss.iron
+            //Â£§???Î∏Ö?ÔøΩ„ÅÑË™§?Ô¶©?Á´ä?SweetAlert2 ?????? https://ithelp.ithome.com.tw/articles/10318757?sc=rss.iron
             window.onload = function () {
                 var errorMessage = new URLSearchParams(window.location.search).get('error');
                 if (errorMessage) {
                     Swal.fire({
                         icon: 'warning',
-                        title: 'Ê≥®Ê??Ôº?',
+                        title: 'Ô¶ä‚ì©??Á´ä?',
                         text: decodeURIComponent(errorMessage),
                     });
                 }
@@ -82,10 +83,10 @@
         <ul class="nav nav-underline justify-content-around" style="background-color: #FAEFD6;">
             
             <li class="nav-item">
-                <a class="nav-link text-dark " href="hotGames.html">??±È??Ë≥Ω‰??</a>
+                <a class="nav-link text-dark " href="hotGames.html">??ÍπÅ??ËòäÏç∞??</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" href="">??????Ë∂≥Á??</a>
+                <a class="nav-link text-dark" href="">??????ÊìÅÎÖï??</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-dark" href="">NBA</a>
@@ -94,25 +95,25 @@
                 <a class="nav-link text-dark" href="">MLB</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" href="">??????Ê£????</a>
+                <a class="nav-link text-dark" href="">??????Ê±ù????</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" href="">???‰∫?</a>
+                <a class="nav-link text-dark" href="">???ÈõÖ?</a>
             </li>
         </ul>
     
         <script>
-            // ??≤Â????∂Â???????¢Á??Ë∑ØÂ??
+            // ??Íø®????Îúπ???????ÔøΩ??ÁìÆÔøΩ??
             const currentUrl = window.location.pathname.split('/').pop();
     
-            // ??∏Â????????Â∞???™È??Áµ?
+            // ??Î©®????????Âº±???„Çâ??Ê∞∏?
             const navLinks = document.querySelectorAll('.nav-link');
     
-            // ???Ê≠∑È??Áµ?Ôº?Â∞??????∂Â???????¢Ë®≠ÂÆ?Ê®?Âº?
+            // ???Ô¶ÜÎ£¨??Ê∞∏?Á´ä?Âº±??????Îúπ???????ÔøΩ√ûÔ•¥?Ëàá?Ô•π?
             navLinks.forEach(link => {
                 if (link.getAttribute('href') === currentUrl) {
-                    link.classList.add('fw-bold'); // ?????? Bootstrap Ê®?Âº?
-                    link.setAttribute('aria-current', 'page'); // Ë®≠Â?? ARIA Ê®?Á§?
+                    link.classList.add('fw-bold'); // ?????? Bootstrap Ëàá?Ô•π?
+                    link.setAttribute('aria-current', 'page'); // ÈºáÔøΩ?? ARIA Ëàá?ÈπΩ?
                 }
             });
         </script>
@@ -124,7 +125,7 @@
             onclick="window.location.href='post.html';">
             <div class="d-flex align-items-center justify-content-between w-100">
 
-                <!-- Â∑¶È????????Logo???Ë≥?Ë®? -->
+                <!-- Ëó•ÔøΩ????????Logo???Ëòä?Èºá? -->
                 <div class="d-flex align-items-center d-flex justify-content-center">
                     <img src="https://upload.wikimedia.org/wikipedia/en/c/c2/Minnesota_Timberwolves_logo.svg"
                         alt="Wolves Logo" class="team-logo me-3">
@@ -133,12 +134,12 @@
                         <div>Wolves</div>
                     </div>
                 </div>
-                <!-- ‰∏≠È???????????ÊØ?Ë≥ΩË??Ë®? -->
+                <!-- Ë®ùÔøΩ???????????Ô¶á?ËòäÏçº??Èºá? -->
                 <div class="flex-grow-1 text-center ">
                     <div class="time-info">4:30 AM</div>
                     <div>BOS by 8.0</div>
                 </div>
-                <!-- ??≥È????????Logo???Ë≥?Ë®? -->
+                <!-- ??ÎÖú????????Logo???Ëòä?Èºá? -->
                 <div class="d-flex align-items-center">
                     <div class="team-info text-end me-3">
                         <div>13-3</div>
@@ -148,9 +149,9 @@
                         class="team-logo">
                 </div>
             </div>
-            <!-- ??°Á??Â∫???®Ê??Â≠????‰∫???? -->
+            <!-- ??‚Üê??‰ΩØ???‚ì©??ËÄ∂????ÈõÖ???? -->
             <div class="mt-3 w-100 text-start">
-                <p class="mb-2">Á∂???≤‰???????®Ô??Â∏??????ÆÂ??7Ë®?‰∏???? Â°???æÊ?????Á¨????5??????</p>
+                <p class="mb-2">Ê≥≥???Íøú???????‚ë®??Ë∫ç??????ÔøΩ??7Èºá?Ë®ù???? Ê´ª???Ïñè?????Ô¶™????5??????</p>
                 <div class="d-flex align-items-center">
                     <span class="comments me-2">
                         <i class="bi bi-chat-dots"></i> 341
@@ -161,9 +162,36 @@
         <div id="matches-container" class="w-100 min-vh-100 d-flex flex-column align-items-center"></div>
     </div>
 
+        .comments {
+            font-size: 12px;
+            color: gray;
+        }
+
+        .btn-hover-effect {
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .btn-hover-effect:hover {
+            transform: scale(1.1);
+        }
+    </style>
     <script>
-        // ‰ΩøÁ?? fetch ??∑Â?? JSON ??∞Ê??
-        fetch('https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/matches') // ??øÊ?¢‰∏∫‰Ω????ÂÆ???? API ??∞Â??
+
+        const currentUrl = window.location.pathname.split('/').pop();
+
+        // ¬ÅÎ©®¬ñ¬â¬Ä¬ú¬âÂº±¬à„Çâ¬ÄÔΩá¬ê
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        // ¬Å¬çÔ¶ÜÎ£¨¬ÄÔΩá¬êÁ´ä¬åÂº±¬ç¬á¬â¬ïÎúπ¬â¬çÔøΩ¬Å¬ùÔøΩ√ûÔ•¥¬öËàáÔΩÖ
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentUrl) {
+                link.classList.add('fw-bold'); // ¬ä¬Ö Bootstrap ËàáÔΩÖ
+                link.setAttribute('aria-current', 'page'); // ÈºáÔøΩ¬ö ARIA Ëàá¬ôÈπΩ
+            }
+        });
+        // ÈµùÏöú¬î fetch ¬çÍø®¬ñ JSON ¬ïÎ©©¬ì¬ö
+        fetch('https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/matches') 
+
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok ' + response.statusText);
@@ -171,60 +199,101 @@
                 return response.json();
             })
             .then(data => {
-                // ??∑Â??ÂÆπÂ??
+                // ¬çÍø®¬ñÔ•¥Î∞ß¬ô
+                data.sort((a, b) => b.id - a.id);
                 const container = document.getElementById('matches-container');
 
-                // ?????? JSON ??∞Ê?ÆÁ???????°Á??
                 data.forEach(match => {
+                    console.log(match.id);
                     const card = document.createElement('button');
                     card.className = 'card mt-3 border-0 d-flex flex-column align-items-center justify-content-center shadow';
                     card.style = 'width: 90%; max-width: 1000px; background-color: #F3EAFD; cursor: pointer;';
-                    card.onclick = () => window.location.href = `post.html?id=${match.id}`;
+                    card.onclick = () => window.location.href = `gameDetail.html?matchId=${match.id}`;
 
                     card.innerHTML = `
-                        <div class="d-flex align-items-center justify-content-between w-100">
-                            <!-- Â∑¶Ëæπ??????Logo???‰ø°Ê?? -->
-                            <div class="d-flex align-items-center d-flex justify-content-center">
-                                <img src="${match.awayTeamLogoUrl}" alt="${match.awayTeam} Logo" class="team-logo me-3">
-                                <div class="team-info">
-                                    <div>${match.awayTeamLose}-${match.homeTeamWin}</div>
-                                    <div>${match.awayTeam}</div>
+                            <div class="d-flex align-items-center justify-content-between w-100">
+                                <div class="d-flex align-items-center d-flex justify-content-center">
+                                    <img src="${match.awayTeamLogoUrl}" alt="${match.awayTeam} Logo" class="team-logo me-3">
+                                    <div class="team-info">
+                                        <div>${match.awayTeamLose}-${match.homeTeamWin}</div>
+                                        <div>${match.awayTeam}</div>
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1 text-center">
+                                    <div class="time-info">${new Date(match.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</div>
+                                    <div>${match.status === 'onGoing' ? 'Ongoing' : 'Upcoming'}</div>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <div class="team-info text-end me-3">
+                                        <div>${match.homeTeamWin}-${match.homeTeamLose}</div>
+                                        <div>${match.homeTeam}</div>
+                                    </div>
+                                    <img src="${match.homeTeamLogoUrl}" alt="${match.homeTeam} Logo" class="team-logo">
                                 </div>
                             </div>
-                            <!-- ‰∏≠È?¥Ê?∂È?¥Â??ÊØ?Ëµ?‰ø°Ê?? -->
-                            <div class="flex-grow-1 text-center">
-                                <div class="time-info">${new Date(match.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</div>
-                                <div>${match.status === 'onGoing' ? 'Ongoing' : 'Upcoming'}</div>
-                            </div>
-                            <!-- ??≥Ëæπ??????Logo???‰ø°Ê?? -->
-                            <div class="d-flex align-items-center">
-                                <div class="team-info text-end me-3">
-                                    <div>${match.homeTeamWin}-${match.homeTeamLose}</div>
-                                    <div>${match.homeTeam}</div>
-                                </div>
-                                <img src="${match.homeTeamLogoUrl}" alt="${match.homeTeam} Logo" class="team-logo">
-                            </div>
+
                         </div>
-                        <!-- ??°Á??Â∫???®Ê??Â≠?‰∏?‰∫???? -->
+                        <!-- ??‚Üê??‰ΩØ???‚ì©??ËÄ∂?Ë®ù?ÈõÖ???? -->
                         <div class="mt-3 w-100 text-start">
-                            <p class="mb-2">ÊØ?Ë≥ΩÊ≠£??®È?≤Ë??Ôº?${match.awayTeam} Â∞? ${match.homeTeam}</p>
+                            <p class="mb-2">Ô¶á?ËòäÏç∏ÔøΩ??‚ë¢?Íø±??Á´ä?${match.awayTeam} Âº±? ${match.homeTeam}</p>
                             <div class="d-flex align-items-center">
                                 <span class="comments me-2">
                                     <i class="bi bi-chat-dots"></i> ${match.comments}
                                 </span>
                             </div>
-                        </div>
-                    `;
+                        `;
 
-                    // ?????•Â?°Á????∞ÂÆπ???
+                    // ?????Œµ?‚Üê????Í≤ºÔøΩ???
                     container.appendChild(card);
                 });
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
                 const container = document.getElementById('matches-container');
-                container.innerHTML = `<p class="text-danger">??°Ê?????Ëº?ÊØ?Ë≥ΩÊ?∏Ê?????Ë´?Á®?Âæ????Ë©¶„??</p>`;
+
+                container.innerHTML = `<p class="text-danger">??‚Üí?????Èõç?Ô¶á?ËòäÏç∏?Î©©?????ÁçÑ?Ëëâ?Â≠É????Â±ã‚ïâ??</p>`;
             });
     </script>
-</body>
+</head>
+
+<body>
+    <!--navbar start-->
+
+    <ul class="nav nav-underline justify-content-around" style="background-color: #FAEFD6;">
+
+        <li class="nav-item">
+            <a class="nav-link text-dark " href="hotGames.html">¬ÜÍπÅ¬ñ¬ÄËòäÏç∞¬ã</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="">¬ú¬ã¬ö¬õÊìÅÎÖï¬ê¬É</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="">NBA</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="">MLB</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="">¬ú¬ã¬ö¬õÊ±ù¬í¬ê¬É</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="profile.html">¬Ä¬ãÈõÖ</a>
+        </li>
+        <li class="nav-item">
+            <button id="loginButton" class="btn align-self-center btn-hover-effect" type="submit"
+                onclick="window.location.href='login.html';" style="background-color: rgb(242, 208, 134);">¬ôÏÇ£¬Ö</button>
+        </li>
+    </ul>
+    <!--navbar end-->
+
+    <body>
+
+        <div class="container-fluid min-vh-100 d-flex flex-column align-items-center"
+            style="max-width: 800px; background-color: #FAE1D8;">
+            <div id="matches-container" class="w-100 min-vh-100 d-flex flex-column align-items-center"
+                ></div>
+        </div>
+
+    </body>
+
 </html>

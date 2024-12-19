@@ -14,7 +14,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-
     <!-- 引入 SweetAlert2 的 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.20/dist/sweetalert2.min.css">
     <!-- 引入 SweetAlert2 的 JavaScript -->
@@ -107,11 +106,12 @@
     <script>
         const apiBaseUrl = "https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/matches";
 
-        // 1. 取得比賽資料
-        function fetchMatches() {
+        //取得比賽資料
+        function getMatches() {
             fetch(apiBaseUrl)
                 .then(response => response.json())
                 .then(data => {
+                    data.sort((a, b) => b.id - a.id);
                     const container = document.getElementById('matches-container');
                     container.innerHTML = ''; // 清空舊資料
                     data.forEach(match => {
@@ -130,7 +130,7 @@
                                     </div>
                                 </div>
                                 <div class="flex-grow-1 text-center">
-                                    <div class="time-info">${new Date(match.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</div>
+                                    <div class="time-info">${new Date(match.date).toLocaleTimeString('zh-TW', {timeZone: 'Asia/Taipei', hour: '2-digit', minute: '2-digit' })}</div>
                                     <div>${match.status === 'onGoing' ? 'Ongoing' : 'Upcoming'}</div>
                                 </div>
                                 <div class="d-flex align-items-center">
@@ -164,7 +164,7 @@
                 });
         }
 
-        // 2. 刪除比賽資料
+        //刪除比賽資料
         function deleteMatch(matchId, cardElement) {
             fetch(`${apiBaseUrl}/${matchId}`, {
                 method: 'DELETE',
@@ -183,7 +183,7 @@
                 });
         }
 
-        // 3. 綁定刪除按鈕事件
+        //綁定刪除按鈕
 
         document.getElementById('matches-container').addEventListener('click', event => {
             if (event.target.classList.contains('delete-btn')) {
@@ -213,7 +213,7 @@
         });
 
         // 初始化 - 加載比賽資料
-        fetchMatches();
+        getMatches();
 
 
     </script>
