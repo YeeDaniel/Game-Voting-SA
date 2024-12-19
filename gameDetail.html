@@ -8,16 +8,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="gameDetail.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   </head>
+  <style>
+    body {
+      background-color: #FAF0D8;
+    }
+  </style>
   <body>
     <ul class="nav nav-underline justify-content-around" style="background-color: #FAEFD6;">
+
       <li class="nav-item">
-          <a class="nav-link text-dark  " href="post.html">首頁</a>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link text-dark " href="test2.html">熱門賽事</a>
+          <a class="nav-link text-dark " href="hotGames.html">熱門賽事</a>
       </li>
       <li class="nav-item">
           <a class="nav-link text-dark" href="">國際足球</a>
@@ -32,9 +34,13 @@
           <a class="nav-link text-dark" href="">國際棒球</a>
       </li>
       <li class="nav-item">
-          <a class="nav-link text-dark" href="">個人</a>
+          <a class="nav-link text-dark" href="profile.html">個人</a>
       </li>
-    </ul>
+      <li class="nav-item">
+          <button id="loginButton" class="btn align-self-center btn-hover-effect" type="submit"
+              onclick="window.location.href='login.html';" style="background-color: rgb(242, 208, 134);">登入</button>
+      </li>
+  </ul>
     <div id="match" class="container-fluid px-5 py-3" style="background-color: #FAF0D8;">
       <div class="container">
         <div class="row align-items-center d-flex">
@@ -87,8 +93,8 @@
                   Over <i class="bi bi-caret-up-fill"></i> <span class="vote-count" id="overVote">0</span>
                 </button>         
               </div>
-              <p class="d-flex">Closes in
-                <span class="mx-1" id="closeTime">4h</span>
+              <p class="d-flex" id="totalClosesIn">Closes in
+                <span class="mx-1" id="totalClose">4h</span>
               </p>
               <div class="row my-1">
                 <div class="col">
@@ -128,7 +134,7 @@
                           Home <span class="vote-count mx-1" id="homeVote">0</span>
                       </button>
                     </div>
-                    <p>Closes in <span id="spreadCloses">4h</span></p>
+                    <p id="spreadClosesIn">Closes in <span id="spreadClose">4h</span></p>
                     <div class="row my-1">
                       <div class="col ">
                         <button class="btn d-flex" id="heartButton1" style="border: none;" onclick="toggleHeart(this, 'count1')">
@@ -705,6 +711,8 @@
         </div>
       </div>
     </section>
+    <script src="login.js"></script>
+    <!--GET COOKIE-->
     <script>
       function getCookie(name) {
       const cookies = document.cookie.split(';');
@@ -717,6 +725,7 @@
       return null;
     }
     </script>
+    <!--GET MATCH DETAIL-->
     <script>
       function getQueryParameter(param) {
         const urlParams = new URLSearchParams(window.location.search);
@@ -728,27 +737,7 @@
       AppData.spreadOption = null;
       AppData.totalPollOption = null;
     </script>
-    <script>/*
-      // Retrieve cookie function
-      function getCookie(name) {
-          const cookies = document.cookie.split('; ');
-          for (const cookie of cookies) {
-              const [key, value] = cookie.split('=');
-              if (key === name) return value;
-          }
-          return null; // Return null if not found
-      }
-
-      // Get user ID from cookie
-      const userId = getCookie('userId');
-      if (userId) {
-          console.log(`User ID: ${userId}`);
-          document.body.innerHTML += `<p>歡迎使用者，您的ID是：${userId}</p>`;
-      } else {
-          alert('未登入，請重新登入。');
-          window.location.href = 'index.html'; // Redirect to login page
-      }*/
-  </script>
+    <!--SPREAD POLL VOTE STATE IDENTIFICATION-->
     <script>
       async function spreadCheckUserVote(voterId) {
       const apiUrl = `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/spreadpolls`;
@@ -760,6 +749,7 @@
           }
 
           const data = await response.json();
+          console.log("API Response Data:", data);
 
           // Find the match data for the current matchId
           const matchData = data.find(match => match.matchId === AppData.matchId);
@@ -804,6 +794,7 @@
 
 
     </script>
+    <!--TOTAL POLLS VOTE STATE IDENTIFICATION-->
     <script>
      async function totalPollsCheckUserVote(voterId) {
       const apiUrl = `https://8080-idx-gamevote2-1732977972872.cluster-3g4scxt2njdd6uovkqyfcabgo6.cloudworkstations.dev/api/totalpolls`;
@@ -1010,6 +1001,9 @@
             document.getElementById("awayTeamName").textContent = match.awayTeam;
 
             document.getElementById("matchTime").textContent = new Date(match.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            AppData.expirationTime = match.date;
+            
             document.getElementById("statusText").textContent = match.status;
             document.getElementById("commentCount").textContent = match.comments;
 
@@ -1155,6 +1149,45 @@
           console.log(`Vote submitted: ${voteSelection}`);
       }
       fetchTotalPointsData();
+    </script>
+    <script>
+      function updateTimeRemaining() {
+        const now = new Date(); // 當前時間
+        const endTime = new Date(AppData.expirationTime); // 比賽結束時間
+        const timeDiff = endTime - now; // 時間差（毫秒）
+        console.log("game time: ",endTime);
+        console.log("time now: ",now);
+        if (timeDiff <= 0) {
+          document.getElementById('totalClosesIn').textContent = "Poll ended";
+          document.getElementById("spreadClosesIn").textContent = "Poll ended";
+          document.getElementById("underButton").disabled = true;
+          document.getElementById("overButton").disabled = true;
+          document.getElementById("totalPollsConfirm").disabled = true;
+          document.getElementById("homeButton").disabled = true;
+          document.getElementById("awayButton").disabled = true;
+          document.getElementById("spreadConfirm").disabled = true;
+          clearInterval(timer); // 停止計時器
+          return;
+        }
+
+        // 計算剩餘時間的時、分、秒
+        const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24)); // 天數
+        const hours = Math.floor(timeDiff % (1000 * 60 * 60 * 24)/ (1000 * 60 * 60));
+        const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+        // 更新前端顯示
+        document.getElementById("spreadClose").textContent =
+          `${days} 天 ${hours} 小時 ${minutes} 分 ${seconds} 秒`;
+        document.getElementById("totalClose").textContent =
+          `${days} 天 ${hours} 小時 ${minutes} 分 ${seconds} 秒`;
+      }
+
+      // 每秒更新一次倒數計時
+      const timer = setInterval(updateTimeRemaining, 1000);
+
+      // 初始化顯示
+      updateTimeRemaining();
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
