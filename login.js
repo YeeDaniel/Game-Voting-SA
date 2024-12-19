@@ -24,7 +24,7 @@ document.getElementById('loginForm')?.addEventListener('submit', async function 
                 setCookie('userId', data.id, 1); // 存用户 ID
                 alert(`登入成功！\n使用者 ID: ${data.id}\n使用者名稱: ${data.name}`);
                 updateButtonToLogout();
-                window.location.href = 'hotGames.html'; 
+                window.location.href = '/'; 
         } else {
             errorMessage.textContent = '該使用者不存在，請重新輸入！';
         }
@@ -49,7 +49,7 @@ function updateButtonToLogout() {
 
 // 取消按鈕
 document.getElementById('cancelButton')?.addEventListener('click', function () {
-    window.location.href = 'hotGames.html';
+    window.location.href = '/';
 });
 
 // Cookie 操作函数
